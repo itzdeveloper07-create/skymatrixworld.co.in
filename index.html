@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Matrix World - SHREE SONAWANE</title>
+    <style>
+        /* पूरी वेबसाइट की थीम - डीप डार्क साइबरपंक */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #040208;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* तारों वाला कॉस्मिक बैकग्राउंड */
+        .background-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px);
+            background-size: 300px 300px;
+            opacity: 0.12;
+            z-index: -1;
+        }
+
+        /* हर सेक्शन पूरी स्क्रीन को कवर करेगा */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        /* --- सेक्शन 1: वेलकम एनीमेशन स्क्रीन --- */
+        #welcome-section {
+            background: radial-gradient(circle at center, #110826 0%, #040208 100%);
+        }
+
+        .welcome-title {
+            font-size: 3.8rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #00f0ff, #ff007a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        .scroll-hint {
+            font-size: 1rem;
+            color: #8f88a0;
+            letter-spacing: 3px;
+            margin-top: 60px;
+            animation: bounce 2s infinite;
+            text-transform: uppercase;
+        }
+
+        /* --- सेक्शन 2: साइफर एआई और स्काई मैट्रिक्स --- */
+        #brand-section {
+            background-color: #060310;
+            border-top: 1px solid #130a29;
+        }
+
+        .created-by {
+            font-size: 1.6rem;
+            color: #00f0ff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+
+        .cypher-title {
+            font-size: 5.5rem;
+            font-weight: 900;
+            letter-spacing: 10px;
+            color: #ffffff;
+            text-shadow: 0 0 25px #ff007a, 0 0 50px #ff007a;
+            margin-bottom: 35px;
+        }
+
+        .ceo-tag {
+            font-size: 1.1rem;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff007a, #00f0ff);
+            padding: 10px 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(255, 0, 122, 0.4);
+            font-weight: bold;
+        }
+
+        /* --- सेक्शन 3: गॉड लेवल नाम --- */
+        #mega-name-section {
+            background: #040208;
+            padding: 0;
+        }
+
+        .huge-tag {
+            font-size: 1.4rem;
+            color: #8b8599;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin-bottom: 25px;
+        }
+
+        .mega-name {
+            font-size: 9vw;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(to right, #ffffff, #ff007a, #00f0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(255, 0, 122, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .full-name-sub {
+            font-size: 2.2rem;
+            color: #b3acc2;
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+
+        /* --- सेक्शन 4: सीईओ डिटेल्स और बिग फोटो --- */
+        #details-section {
+            background-color: #060310;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photo-container-pro {
+            width: 380px;
+            height: 520px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 0, 122, 0.6);
+            box-shadow: -10px 10px 30px rgba(255, 0, 122, 0.2), 10px -10px 30px rgba(0, 240, 255, 0.2);
+            overflow: hidden;
+            background-color: #110826;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-container-pro img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-layout-pro {
+            flex: 1;
+            min-width: 320px;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pro-card-item {
+            background: linear-gradient(135deg, rgba(20, 13, 38, 0.8) 0%, rgba(10, 6, 22, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #00f0ff;
+            padding: 22px 25px;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .pro-card-item:hover {
+            transform: translateX(8px);
+            border-left-color: #ff007a;
+            background: rgba(40, 20, 70, 0.9);
+        }
+
+        .pro-card-item p {
+            font-size: 1.2rem;
+            color: #e2def0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* --- सेक्शन 5: प्रोजेक्ट की जानकारी --- */
+        #mission-section {
+            background-color: #040208;
+            border-top: 1px solid #130a29;
+        }
+
+        .mission-header {
+            font-size: 2rem;
+            color: #ff007a;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 0, 122, 0.3);
+        }
+
+        .dev-log-container {
+            max-width: 900px;
+            background: linear-gradient(180deg, #090518 0%, #05020c 100%);
+            border: 1px dashed #00f0ff;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .dev-log-text {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: #e2def0;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #040208;
+            background-color: #00f0ff;
+            padding: 8px 25px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- 100% प्रोफेशनल इंग्लिश मास्टरमाइंड बैनर --- */
+        .mastermind-banner {
+            max-width: 900px;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(255, 0, 122, 0.15) 0%, rgba(0, 240, 255, 0.15) 100%);
+            border: 2px solid #ff007a;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(255, 0, 122, 0.3);
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .mastermind-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            line-height: 1.6;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        .mastermind-text span {
+            color: #00f0ff;
+            text-shadow: 0 0 10px #00f0ff;
+        }
+
+        .mastermind-text .highlight-ceo {
+            color: #ff007a;
+            font-size: 1.7rem;
+            font-weight: 900;
+            text-shadow: 0 0 15px #ff007a;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* --- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ ग्रिड --- */
+        #ui-grid-section {
+            background-color: #060310;
+            border-top: 1px solid #130a29;
+            padding-bottom: 100px;
+        }
+
+        .ui-section-header {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #ffffff;
+            text-shadow: 0 0 20px #00f0ff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .ui-section-subheader {
+            font-size: 1.1rem;
+            color: #8b8599;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        /* 100% प्रोफेशनल इंग्लिश यूआई डिस्क्लेमर */
+        .ui-disclaimer {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ff3366;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid #ff3366;
+            padding: 12px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            max-width: 800px;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+        }
+
+        .grid-container-15 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* हर एक UI स्क्रीन का फ्रेम */
+        .ui-screen-card {
+            background: #090518;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 16px;
+            height: 480px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .ui-screen-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ff007a;
+            box-shadow: 0 15px 35px rgba(255, 0, 122, 0.3);
+        }
+
+        /* 15 इमेजेस की कोडिंग */
+        .ui-screen-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .ui-placeholder-core {
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .ui-loading-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed #ff007a;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            animation: rotate 6s linear infinite;
+        }
+
+        .ui-screen-num {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #00f0ff;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .ui-screen-desc {
+            font-size: 0.8rem;
+            color: #5d566e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- सेक्शन 7: कमिंग सून --- */
+        #footer-section {
+            background: #030108;
+            min-height: 60vh;
+            border-top: 1px solid #130a29;
+        }
+
+        .coming-soon {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 12px;
+            background: linear-gradient(45deg, #ff007a, #ff7b00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 35px rgba(255, 123, 0, 0.5);
+            margin-bottom: 25px;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #494354;
+            margin-top: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* --- एनीमेशन की कोडिंग --- */
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+            100% { text-shadow: 0 0 40px rgba(255, 0, 122, 0.6); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-12px); }
+            60% { transform: translateY(-6px); }
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-stars"></div>
+
+    <!-- सेक्शन 1: वेलकम स्क्रीन -->
+    <section id="welcome-section">
+        <div class="welcome-title">Welcome To Sky Matrix World</div>
+        <div class="scroll-hint">Scroll Down To Know More ↓</div>
+    </section>
+
+    <!-- सेक्शन 2: ब्रांड और प्रोडक्ट -->
+    <section id="brand-section">
+        <div class="created-by">Created By Sky Matrix</div>
+        <div class="cypher-title">CYPHER AI</div>
+        <div class="ceo-tag">CEO & Creator Identity</div>
+    </section>
+
+    <!-- सेक्शन 3: मेगा नेम डिस्प्ले -->
+    <section id="mega-name-section">
+        <div class="huge-tag">CEO & Creator of Sky Matrix</div>
+        <div class="mega-name">SHREE SONAWANE</div>
+        <div class="full-name-sub">Full Name: SHREE SANJAY SONAWANE</div>
+    </section>
+
+    <!-- सेक्शन 4: बिग फोटो और डिटेल्स ग्रिड -->
+    <section id="details-section">
+        <div class="photo-container-pro">
+            <img src="myphoto.jpeg" alt="CEO Shree Sonawane" id="pro-avatar">
+        </div>
+
+        <div class="info-layout-pro">
+            <div class="pro-card-item">
+                <p>Shree Sonawane is currently living in Nashik, Maharashtra.</p>
+            </div>
+            <div class="pro-card-item">
+                <p>Shree Sonawane's age is 15 years old.</p>
+            </div>
+            <div class="pro-card-item">
+                <p>Shree Sonawane's father's name is SANJAY SONAWANE.</p>
+            </div>
+            <div class="pro-card-item">
+                <p>Shree Sonawane's full name is SHREE SANJAY SONAWANE.</p>
+            </div>
+            <div class="pro-card-item">
+                <p>Shree Sonawane's birth place is Bhusawal, Jalgaon.</p>
+            </div>
+            <div class="pro-card-item">
+                <p>Shree Sonawane's mother's name is SUREKHA SANJAY SONAWANE.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- सेक्शन 5: प्रोजेक्ट का ग्राउंड रियलिटी और मेहनत -->
+    <section id="mission-section">
+        <div class="mission-header">Project Intel & Core Progress</div>
+        <div class="dev-log-container">
+            <p class="dev-log-text">
+                Behind the dark screens and neon codes of SKY MATRIX, an underground revolution is brewing. For the past several months, we have been silently pushing the limits of technology, engineering a beast from scratch—<strong>CYPHER AI</strong>. This isn't just another application; it is a highly optimized, lightning-fast intelligence protocol designed to bring next-generation AI power right into your pocket.
+            </p>
+            <p class="dev-log-text">
+                Right now, we are deep into the most critical phase: training our custom architecture, refining our core V8 engine, and perfect-tuning a dark, futuristic cyberpunk user interface that feels alive. Day and night, every line of code is being crafted with extreme precision to ensure unmatched speed, absolute security, and a god-level user experience.
+            </p>
+            <p class="dev-log-text" style="margin-bottom: 35px;">
+                The countdown has officially begun. Over the next 4 to 5 months, CYPHER AI will undergo rigorous closed-beta testing, stress testing, and final polishing before it officially drops live on the Google Play Store. We are putting in the sweat, the sleepless nights, and the ultimate grind to make sure that when it launches, it changes the game forever. Stay wired.
+            </p>
+            <div class="timeline-badge">Launch Window: 4-5 Months Remain</div>
+        </div>
+
+        <!-- 100% एलीट इंग्लिश मास्टरमाइंड बैनर -->
+        <div class="mastermind-banner">
+            <div class="mastermind-text">
+                And behind this BRILLIANT APP <span>CYPHER AI</span> is the mastermind, THE CEO OF SKY MATRIX:
+                <span class="highlight-ceo">THE CEO SHREE SONAWANE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ का ग्रिड सिस्टम -->
+    <section id="ui-grid-section">
+        <div class="ui-section-header">CYPHER AI UI</div>
+        <div class="ui-section-subheader">Interface Architecture & Cinematic Angles</div>
+        
+        <!-- 100% एलीट इंग्लिश यूआई डिस्क्लेमर -->
+        <div class="ui-disclaimer">
+            ⚠️ NOTICE: The final app interface will vary. This section showcases the dynamic test and simulation UI environment.
+        </div>
+        
+        <div class="grid-container-15">
+            
+            <div class="ui-screen-card">
+                <img src="ui1.jpeg" alt="UI Screen 1">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 01</div><div class="ui-screen-desc">Core Interface Wireframe</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui2.jpeg" alt="UI Screen 2">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 02</div><div class="ui-screen-desc">V8 Engine Monitor</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui3.jpeg" alt="UI Screen 3">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 03</div><div class="ui-screen-desc">Neural Interaction Matrix</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui4.jpeg" alt="UI Screen 4">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 04</div><div class="ui-screen-desc">Cinematic Perspective A</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui5.jpeg" alt="UI Screen 5">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 05</div><div class="ui-screen-desc">Cinematic Perspective B</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui6.jpeg" alt="UI Screen 6">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 06</div><div class="ui-screen-desc">Cyberpunk HUD Setup</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui7.jpeg" alt="UI Screen 7">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 07</div><div class="ui-screen-desc">AI Core Status Panel</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui8.jpeg" alt="UI Screen 8">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 08</div><div class="ui-screen-desc">Macro Eye Detail UI</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui9.jpeg" alt="UI Screen 9">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 09</div><div class="ui-screen-desc">Dutch Angle Overview</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui10.jpeg" alt="UI Screen 10">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 10</div><div class="ui-screen-desc">Database Protocol Grid</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui11.jpeg" alt="UI Screen 11">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 11</div><div class="ui-screen-desc">Dark UI Light Tuning</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui12.jpeg" alt="UI Screen 12">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 12</div><div class="ui-screen-desc">Mascot Grid Calibration</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui13.jpeg" alt="UI Screen 13">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 13</div><div class="ui-screen-desc">Secure Data Vault UI</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui14.jpeg" alt="UI Screen 14">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 14</div><div class="ui-screen-desc">Beta Protocol Log</div></div>
+            </div>
+
+            <div class="ui-screen-card">
+                <img src="ui15.jpeg" alt="UI Screen 15">
+                <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 15</div><div class="ui-screen-desc">Final Production Matrix</div></div>
+            </div>
+
+        </div>
+        
+        <div class="ui-disclaimer" style="margin-top: 50px; margin-bottom: 0;">
+            * NOTE: ABOVE FRAMES REPRESENT CORE DATA CONSISTENCY TESTS AND STAGE-1 DESIGN PARAMETERS ONLY.
+        </div>
+    </section>
+
+    <!-- सेक्शन 7: अंत (कमिंग सून) -->
+    <section id="footer-section">
+        <div class="coming-soon">MORE COMING SOON</div>
+        <div class="copyright">&copy; 2026 SKY MATRIX. All Rights Reserved.</div>
+    </section>
+
+</body>
+</html>
