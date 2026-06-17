@@ -106,7 +106,7 @@
         }
 
         /* हर सेक्शन पूरी स्क्रीन को कवर करेगा */
-       section {
+        section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -134,6 +134,17 @@
         /* --- सेक्शन 1: वेलकम एनीमेशन स्क्रीन --- */
         #welcome-section {
             background: radial-gradient(circle at center, #110826 0%, #040208 100%);
+        }
+
+        /* 🚀 वेलकम स्क्रीन के ऊपर का एलीट सब-हेडर स्टाइल */
+        .official-badge {
+            font-size: 1.1rem;
+            color: #00f0ff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         }
 
         .welcome-title {
@@ -260,8 +271,7 @@
 
         .photo-container-pro img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+      0 0 15px rgba(255, 51, 102, 0.2);
         }
 
         .info-layout-pro {
@@ -296,6 +306,42 @@
             color: #e2def0;
             line-height: 1.6;
             font-weight: 500;
+        }
+
+        /* 🚀 न्यू फ़ीचर: सीईओ बायोग्राफी (Biography Section) का कस्टमाइज्ड CSS */
+        .ceo-bio-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            background: linear-gradient(180deg, #090518 0%, #05020c 100%);
+            border: 1px dashed #ff007a;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: 0 0 30px rgba(255, 0, 122, 0.1);
+        }
+
+        .bio-header {
+            font-size: 2rem;
+            color: #00f0ff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            font-weight: 800;
+        }
+
+        .bio-text {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: #e2def0;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .bio-text strong {
+            color: #ff007a;
+            text-shadow: 0 0 10px rgba(255, 0, 122, 0.2);
         }
 
         /* --- सेक्शन 5: प्रोजेक्ट की जानकारी --- */
@@ -335,7 +381,7 @@
 
         .timeline-badge {
             display: inline-block;
-            font-size: 1.1rem;
+           font-size: 1.1rem;
             font-weight: bold;
             color: #040208;
             background-color: #00f0ff;
@@ -355,7 +401,7 @@
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 0 25px rgba(255, 0, 122, 0.3);
-           margin-top: 20px;
+            margin-top: 20px;
             text-transform: uppercase;
         }
 
@@ -375,17 +421,18 @@
         .mastermind-text .highlight-ceo {
             color: #ff007a;
             font-size: 1.7rem;
-            font-weight: 900;
+           font-weight: 900;
             text-shadow: 0 0 15px #ff007a;
             display: block;
             margin-top: 10px;
         }
 
-        /* --- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ ग्रिड --- */
+        /* ---नेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ ग्रिड --- */
         #ui-grid-section {
             background-color: #060310;
             border-top: 1px solid #130a29;
-  0 0 15px rgba(255, 51, 102, 0.2);
+            padding-bottom: 100px;
+            width: 100%;
         }
 
         .ui-section-header {
@@ -411,7 +458,7 @@
             font-size: 1.1rem;
             font-weight: bold;
             color: #ff3366;
-           background: rgba(255, 51, 102, 0.1);
+            background: rgba(255, 51, 102, 0.1);
             border: 1px solid #ff3366;
             padding: 12px 30px;
             border-radius: 8px;
@@ -439,7 +486,7 @@
             border: 1px solid rgba(0, 240, 255, 0.2);
             border-radius: 16px;
             height: 480px;
-           overflow: hidden;
+            overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -550,6 +597,13 @@
                 height: auto;
             }
 
+            /* मोबाइल के लिए वेलकम बैच स्टाइल */
+            .official-badge {
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 10px;
+            }
+
             /* सेक्शन 1: वेलकम स्क्रीन मोबाइल */
             .welcome-title {
                 font-size: 2.2rem; /* मोबाइल के लिए परफेक्ट फॉन्ट */
@@ -609,6 +663,7 @@
             .photo-container-pro {
                 width: 100%;
                 max-width: 320px; /* मोबाइल पर फ्रेम सही दिखेगा */
+                height: 420px;
             }
 
             .info-layout-pro {
@@ -621,6 +676,24 @@
 
             .pro-card-item p {
                 font-size: 1rem; /* पढ़ने में आसान */
+            }
+
+            /* मोबाइल के लिए बायोग्राफी का स्टाइल */
+            .ceo-bio-container {
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 25px;
+            }
+
+            .bio-header {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+                margin-bottom: 15px;
+            }
+
+            .bio-text {
+                font-size: 1rem;
+                line-height: 1.7;
             }
 
             /* सेक्शन 5: मिशन मोबाइल */
@@ -709,11 +782,13 @@
 
     <!-- सेक्शन 1: वेलकम स्क्रीन -->
     <section id="welcome-section">
+        <!-- 🚀 न्यू फ़ीचर: वेलकम स्क्रीन के थोड़ा ऊपर लाइव होने वाला कड़क टेक सब-हेडर -->
+        <div class="official-badge scroll-reveal">Official Website of Sky Matrix World & CYPHER AI</div>
         <div class="welcome-title scroll-reveal">Welcome To Sky Matrix World</div>
         <div class="scroll-hint">Scroll Down To Know More ↓</div>
     </section>
 
-    <!-- सेक्शन 2: ब्रांड औरेंट प्रोडक्ट -->
+    <!-- सेक्शन 2: ब्रांड और प्रोडक्ट -->
     <section id="brand-section">
         <div class="created-by scroll-reveal">Created By Sky Matrix</div>
         <div class="cypher-title scroll-reveal">CYPHER AI</div>
@@ -752,6 +827,20 @@
             <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane's mother's name is SUREKHA SANJAY SONAWANE.</p>
             </div>
+        </div>
+
+        <!-- 🚀 न्यू फ़ीचर: फोटो और डिटेल्स के तुरंत नीचे लाइव होने वाला सीईओ बायोग्राफी मास्टर सेक्शन -->
+        <div class="ceo-bio-container scroll-reveal">
+            <h2 class="bio-header">The Mastermind Behind The Matrix</h2>
+            <p class="bio-text">
+                Behind the blueprint of SKY MATRIX and the digital architecture of SKY MATRIX WORLD stands a young visionary driven by pure code and relentless ambition. <strong>Shree Sonawane</strong> is officially the CEO, Founder, and Chief Architect of this entire digital ecosystem. At just 15 years old, operating from Nashik, Maharashtra, he has turned complex technology into his personal playground, engineering high-level platforms from the ground up.
+            </p>
+            <p class="bio-text">
+                But his vision doesn’t stop at building websites. Shree Sonawane is officially the Creator, Founder, and CEO of his highly anticipated upcoming project—<strong>CYPHER AI</strong>. Pushing through sleepless nights and intense development cycles, he is single-handedly steering the engineering, user interface tuning, and core engine optimization of this next-generation intelligence protocol.
+            </p>
+            <p class="bio-text" style="margin-bottom: 0;">
+                As the executive leader of Sky Matrix, Shree continues to break barriers, proving that age is just a number when it comes to raw execution, technological innovation, and god-level mastermind strategy. The framework is set, the code is secure, and the future is being written under his command.
+            </p>
         </div>
     </section>
 
