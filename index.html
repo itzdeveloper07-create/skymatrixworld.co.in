@@ -21,17 +21,51 @@
             width: 100%;
         }
 
-        /* तारों वाला कॉस्मिक बैकग्राउंड */
+        /* 🚀 फीचर 1: नया प्रीमियम कस्टम साइबरपंक स्क्रॉलबार (डेस्कटॉप और मोबाइल दोनों के लिए) */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #040208;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00f0ff, #ff007a);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+
+        /* तारों वाला कॉस्मिक बैकग्राउंड (पैरालाक्स इफेक्ट के साथ) */
         .background-stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 120%; /* थोड़ा बड़ा रखा है ताकि स्क्रॉल के साथ मूव हो सके */
             background: radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px);
             background-size: 300px 300px;
             opacity: 0.12;
+            z-index: -2;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* 🚀 फीचर 2: काइनेटिक मैट्रिक्स ग्रिड लाइन्स (Kinetic Matrix Grid Lines Background) */
+        .kinetic-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
             z-index: -1;
+            pointer-events: none;
         }
 
         /* हर सेक्शन पूरी स्क्रीन को कवर करेगा */
@@ -45,6 +79,19 @@
             position: relative;
             text-align: center;
             width: 100%;
+        }
+
+        /* 🚀 फीचर 3: स्क्रॉल ट्रिगर एनीमेशन के लिए बेस क्लासेस (Fade & Slide-up elements) */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- सेक्शन 1: वेलकम एनीमेशन स्क्रीन --- */
@@ -109,6 +156,7 @@
             border-radius: 50px;
             box-shadow: 0 0 20px rgba(255, 0, 122, 0.4);
             font-weight: bold;
+            display: inline-block;
         }
 
         /* --- सेक्शन 3: गॉड लेवल नाम --- */
@@ -296,7 +344,7 @@
             margin-top: 10px;
         }
 
-        /* --- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ ग्रिड --- */
+        /* --- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ ग्रिड --- */
         #ui-grid-section {
             background-color: #060310;
             border-top: 1px solid #130a29;
@@ -456,7 +504,7 @@
 
 
         /* =======================================================
-           🚀 खास मोबाइल और टैबलेट के लिए कस्टमाइज्ड CSS (Media Queries)
+            🚀 खास मोबाइल और टैबलेट के लिए कस्टमाइज्ड CSS (Media Queries)
            ======================================================= */
         
         @media (max-width: 768px) {
@@ -618,60 +666,64 @@
 </head>
 <body>
 
-    <div class="background-stars"></div>
+    <!-- तारों वाला बैकग्राउंड -->
+    <div class="background-stars" id="starBg"></div>
+    
+    <!-- 🚀 काइनेटिक मैट्रिक्स ग्रिड लाइन्स बैकग्राउंड -->
+    <div class="kinetic-grid"></div>
 
     <!-- सेक्शन 1: वेलकम स्क्रीन -->
     <section id="welcome-section">
-        <div class="welcome-title">Welcome To Sky Matrix World</div>
+        <div class="welcome-title scroll-reveal">Welcome To Sky Matrix World</div>
         <div class="scroll-hint">Scroll Down To Know More ↓</div>
     </section>
 
     <!-- सेक्शन 2: ब्रांड और प्रोडक्ट -->
     <section id="brand-section">
-        <div class="created-by">Created By Sky Matrix</div>
-        <div class="cypher-title">CYPHER AI</div>
-        <div class="ceo-tag">CEO & Creator Identity</div>
+        <div class="created-by scroll-reveal">Created By Sky Matrix</div>
+        <div class="cypher-title scroll-reveal">CYPHER AI</div>
+        <div class="ceo-tag scroll-reveal">CEO & Creator Identity</div>
     </section>
 
     <!-- सेक्शन 3: मेगा नेम डिस्प्ले -->
     <section id="mega-name-section">
-        <div class="huge-tag">CEO & Creator of Sky Matrix</div>
-        <div class="mega-name">SHREE SONAWANE</div>
-        <div class="full-name-sub">Full Name: SHREE SANJAY SONAWANE</div>
+        <div class="huge-tag scroll-reveal">CEO & Creator of Sky Matrix</div>
+        <div class="mega-name scroll-reveal">SHREE SONAWANE</div>
+        <div class="full-name-sub scroll-reveal">Full Name: SHREE SANJAY SONAWANE</div>
     </section>
 
     <!-- सेक्शन 4: बिग फोटो और डिटेल्स ग्रिड -->
     <section id="details-section">
-        <div class="photo-container-pro">
+        <div class="photo-container-pro scroll-reveal">
             <img src="myphoto.jpeg" alt="CEO Shree Sonawane" id="pro-avatar">
         </div>
 
         <div class="info-layout-pro">
-            <div class="pro-card-item">
+            <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane is currently living in Nashik, Maharashtra.</p>
             </div>
-            <div class="pro-card-item">
+            <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane's age is 15 years old.</p>
             </div>
-            <div class="pro-card-item">
+            <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane's father's name is SANJAY SONAWANE.</p>
             </div>
-            <div class="pro-card-item">
+            <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane's full name is SHREE SANJAY SONAWANE.</p>
             </div>
-            <div class="pro-card-item">
+            <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane's birth place is Bhusawal, Jalgaon.</p>
             </div>
-            <div class="pro-card-item">
+            <div class="pro-card-item scroll-reveal">
                 <p>Shree Sonawane's mother's name is SUREKHA SANJAY SONAWANE.</p>
             </div>
         </div>
     </section>
 
-    <!-- सेक्शन 5: प्रोजेक्ट का ग्राउंड रियलिटी और मेहनत -->
+    <!-- सेक्शन 5: प्रोजेक्ट का कड़क डेवलपमेंट लॉग -->
     <section id="mission-section">
-        <div class="mission-header">Project Intel & Core Progress</div>
-        <div class="dev-log-container">
+        <div class="mission-header scroll-reveal">Project Intel & Core Progress</div>
+        <div class="dev-log-container scroll-reveal">
             <p class="dev-log-text">
                 Behind the dark screens and neon codes of SKY MATRIX, an underground revolution is brewing. For the past several months, we have been silently pushing the limits of technology, engineering a beast from scratch—<strong>CYPHER AI</strong>. This isn't just another application; it is a highly optimized, lightning-fast intelligence protocol designed to bring next-generation AI power right into your pocket.
             </p>
@@ -685,7 +737,7 @@
         </div>
 
         <!-- 100% एलीट इंग्लिश मास्टरमाइंड बैनर -->
-        <div class="mastermind-banner">
+        <div class="mastermind-banner scroll-reveal">
             <div class="mastermind-text">
                 And behind this BRILLIANT APP <span>CYPHER AI</span> is the mastermind, THE CEO OF SKY MATRIX:
                 <span class="highlight-ceo">THE CEO SHREE SONAWANE</span>
@@ -693,105 +745,141 @@
         </div>
     </section>
 
-    <!-- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ का ग्रिड सिस्टम -->
+    <!-- सेक्शन 6: CYPHER AI UI और 15 फ़ोटोज़ का ग्रिड सिस्टम -->
     <section id="ui-grid-section">
-        <div class="ui-section-header">CYPHER AI UI</div>
-        <div class="ui-section-subheader">Interface Architecture & Cinematic Angles</div>
+        <div class="ui-section-header scroll-reveal">CYPHER AI UI</div>
+        <div class="ui-section-subheader scroll-reveal">Interface Architecture & Cinematic Angles</div>
         
         <!-- 100% एलीट इंग्लिश यूआई डिस्क्लेमर -->
-        <div class="ui-disclaimer">
+        <div class="ui-disclaimer scroll-reveal">
             ⚠️ NOTICE: The final app interface will vary. This section showcases the dynamic test and simulation UI environment.
         </div>
         
         <div class="grid-container-15">
             
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui1.jpeg" alt="UI Screen 1">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 01</div><div class="ui-screen-desc">Core Interface Wireframe</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui2.jpeg" alt="UI Screen 2">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 02</div><div class="ui-screen-desc">V8 Engine Monitor</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui3.jpeg" alt="UI Screen 3">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 03</div><div class="ui-screen-desc">Neural Interaction Matrix</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui4.jpeg" alt="UI Screen 4">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 04</div><div class="ui-screen-desc">Cinematic Perspective A</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui5.jpeg" alt="UI Screen 5">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 05</div><div class="ui-screen-desc">Cinematic Perspective B</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui6.jpeg" alt="UI Screen 6">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 06</div><div class="ui-screen-desc">Cyberpunk HUD Setup</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui7.jpeg" alt="UI Screen 7">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 07</div><div class="ui-screen-desc">AI Core Status Panel</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui8.jpeg" alt="UI Screen 8">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 08</div><div class="ui-screen-desc">Macro Eye Detail UI</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui9.jpeg" alt="UI Screen 9">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 09</div><div class="ui-screen-desc">Dutch Angle Overview</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui10.jpeg" alt="UI Screen 10">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 10</div><div class="ui-screen-desc">Database Protocol Grid</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui11.jpeg" alt="UI Screen 11">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 11</div><div class="ui-screen-desc">Dark UI Light Tuning</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui12.jpeg" alt="UI Screen 12">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 12</div><div class="ui-screen-desc">Mascot Grid Calibration</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui13.jpeg" alt="UI Screen 13">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 13</div><div class="ui-screen-desc">Secure Data Vault UI</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui14.jpeg" alt="UI Screen 14">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 14</div><div class="ui-screen-desc">Beta Protocol Log</div></div>
             </div>
 
-            <div class="ui-screen-card">
+            <div class="ui-screen-card scroll-reveal">
                 <img src="ui15.jpeg" alt="UI Screen 15">
                 <div class="ui-placeholder-core"><div class="ui-loading-circle"></div><div class="ui-screen-num">SCREEN 15</div><div class="ui-screen-desc">Final Production Matrix</div></div>
             </div>
 
         </div>
         
-        <div class="ui-disclaimer" style="margin-top: 50px; margin-bottom: 0;">
+        <div class="ui-disclaimer scroll-reveal" style="margin-top: 50px; margin-bottom: 0;">
             * NOTE: ABOVE FRAMES REPRESENT CORE DATA CONSISTENCY TESTS AND STAGE-1 DESIGN PARAMETERS ONLY.
         </div>
     </section>
 
     <!-- सेक्शन 7: अंत (कमिंग सून) -->
     <section id="footer-section">
-        <div class="coming-soon">MORE COMING SOON</div>
+        <div class="coming-soon scroll-reveal">MORE COMING SOON</div>
         <div class="copyright">&copy; 2026 SKY MATRIX. All Rights Reserved.</div>
     </section>
 
+    <!-- 🚀 जावास्क्रिप्ट इंजन: स्मूथ पैरालाक्स और स्क्रॉल एनीमेशन के लिए -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const starBg = document.getElementById("starBg");
+            const revealElements = document.querySelectorAll(".scroll-reveal");
+
+            // 1. पैरालाक्स इफेक्ट और काइनेटिक ग्रिड शिफ्ट
+            window.addEventListener("scroll", function() {
+                let scrollPos = window.pageYOffset;
+                // तारों को धीरे-धीरे नीचे ले जाएगा जिससे 3D गहराई का अहसास होगा
+                starBg.style.transform = "translateY(" + (scrollPos * 0.25) + "px)";
+            }, { passive: true });
+
+            // 2. इंटेलिजेंट स्क्रॉल ट्रिगर एनीमेशन (Intersection Observer API)
+            // यह मोबाइल की बैटरी बचाएगा और बिना किसी लैग के एलिमेंट्स को स्मूथली लोड करेगा
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.08 // जब एलिमेंट 8% स्क्रीन पर आएगा, तभी ट्रिगर होगा
+            };
+
+            const elementObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // एक बार एलिमेंट दिखने के बाद अब्जर्वर बंद कर देंगे ताकि परफॉरमेंस बेस्ट रहे
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(element => {
+                elementObserver.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
