@@ -162,6 +162,46 @@
             transform: translateY(-1px);
         }
 
+        /* 🚀 प्रीमियम यूजर-स्टेटस हैडर */
+        .header-user-badge {
+            background: rgba(8, 5, 19, 0.8);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: #00ff66;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            display: none; /* डिफ़ॉल्ट रूप से छिपा हुआ */
+        }
+
+        .header-user-badge:hover {
+            border-color: #00ff66;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
+        .header-user-badge .user-avatar {
+            width: 30px;
+            height: 30px;
+            background-color: #00ff66;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #030107;
+            font-size: 1.1rem;
+        }
+
+        .header-user-badge .user-status-text {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -397,6 +437,133 @@
             line-height: 1.4;
         }
 
+        /* 🚀 अभिनव साइबरपंक स्लाइडर पैनल */
+        .user-panel-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(3, 1, 7, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            justify-content: flex-end;
+            transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .user-panel-overlay.open {
+            right: 0;
+        }
+
+        .user-panel {
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: #080513;
+            border-left: 1px solid #1c143a;
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            position: relative;
+        }
+
+        .close-panel-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.8rem;
+            color: #554e68;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-panel-btn:hover {
+            color: #ff007a;
+        }
+
+        .panel-user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .panel-user-avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #00ff66;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #030107;
+            font-size: 2.5rem;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
+        .panel-username {
+            font-size: 1.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+
+        .panel-status-tag {
+            background: rgba(0, 255, 102, 0.1);
+            border: 1px solid #00ff66;
+            padding: 5px 15px;
+            border-radius: 50px;
+            color: #00ff66;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .panel-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel-action-btn {
+            background: rgba(8, 5, 19, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .panel-action-btn:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            background: rgba(14, 9, 30, 0.8);
+        }
+
+        .panel-action-btn.logout-btn {
+            border-color: #ff007a;
+            color: #ff007a;
+            margin-top: auto;
+        }
+
+        .panel-action-btn.logout-btn:hover {
+            background: rgba(255, 0, 122, 0.1);
+            box-shadow: 0 0 20px rgba(255, 0, 122, 0.4);
+        }
+
         #footer-section {
             background: #010003;
             min-height: 40vh;
@@ -482,6 +649,11 @@
                 <a href="https://shree.skymatrixworld.co.in" class="nav-item">Biography</a>
             </nav>
             <button class="header-signin-btn" id="openAuthBtn">Sign In</button>
+            
+            <div class="header-user-badge" id="headerUserBadge">
+                <div class="user-avatar" id="headerAvatar">?</div>
+                <div class="user-status-text" id="headerUsername">Offline</div>
+            </div>
         </div>
     </header>
 
@@ -535,6 +707,27 @@
         </div>
     </div>
 
+    <div class="user-panel-overlay" id="userPanelOverlay">
+        <div class="user-panel">
+            <div class="close-panel-btn" id="closePanelBtn">&times;</div>
+            
+            <div class="panel-user-info">
+                <div class="panel-user-avatar" id="panelAvatar">?</div>
+                <div class="panel-username" id="panelUsername">Offline</div>
+                <div class="panel-status-tag">Core Node Active</div>
+            </div>
+
+            <div class="panel-actions">
+                <button class="panel-action-btn">
+                    <span>+</span> Add Another Identity
+                </button>
+                <button class="panel-action-btn logout-btn" id="panelLogoutBtn">
+                    <span>[!]</span> Terminate Session
+                </button>
+            </div>
+        </div>
+    </div>
+
     <section id="footer-section">
         <div class="legal-links">
             <a href="#" class="legal-item">Privacy Policy</a>
@@ -554,26 +747,34 @@
             const starBg = document.getElementById("starBg");
             const revealElements = document.querySelectorAll(".scroll-reveal");
             const openAuthBtn = document.getElementById("openAuthBtn");
+            const headerUserBadge = document.getElementById("headerUserBadge");
+            const headerAvatar = document.getElementById("headerAvatar");
+            const headerUsername = document.getElementById("headerUsername");
+            const panelUsername = document.getElementById("panelUsername");
+            const panelAvatar = document.getElementById("panelAvatar");
             const statusMsg = document.getElementById("statusMessage");
 
             function checkLocalSession() {
                 const loggedUser = localStorage.getItem("sky_matrix_session");
                 if (loggedUser) {
-                    activateUserNode(loggedUser);
+                    activateUserUI(loggedUser);
                 }
             }
 
-            function activateUserNode(username) {
-                openAuthBtn.innerText = `NODE: ${username.toUpperCase()}`;
-                openAuthBtn.style.border = "1px solid #00ff66";
-                openAuthBtn.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.4)";
+            function activateUserUI(username) {
+                const upperUsername = username.toUpperCase();
                 
-                openAuthBtn.onclick = () => {
-                    if(confirm("Do you want to terminate this secure session?")) {
-                        localStorage.removeItem("sky_matrix_session");
-                        window.location.reload();
-                    }
-                };
+                // हैडर बटन छिपाओ, यूजर बैज दिखाओ
+                openAuthBtn.style.display = "none";
+                headerUserBadge.style.display = "flex";
+                
+                // हैडर बैज में नाम और अवतार सेट करो
+                headerUsername.innerText = upperUsername;
+                headerAvatar.innerText = upperUsername.charAt(0);
+                
+                // पैनल में भी नाम और अवतार सेट करो
+                panelUsername.innerText = upperUsername;
+                panelAvatar.innerText = upperUsername.charAt(0);
             }
 
             checkLocalSession();
@@ -615,12 +816,10 @@
             const wrapperRegister = document.getElementById("wrapper-register");
 
             openAuthBtn.addEventListener("click", () => {
-                if (!openAuthBtn.innerText.includes("NODE:")) {
-                    authOverlay.classList.add("open");
-                    menuToggle.classList.remove("open");
-                    navContainer.classList.remove("open");
-                    statusMsg.style.display = "none";
-                }
+                authOverlay.classList.add("open");
+                menuToggle.classList.remove("open");
+                navContainer.classList.remove("open");
+                statusMsg.style.display = "none";
             });
 
             closeAuthBtn.addEventListener("click", () => {
@@ -643,6 +842,36 @@
                 statusMsg.style.display = "none";
             });
 
+            // 🚀 अभिनव यूजर पैनल स्लाइडर कंट्रोल्स
+            const userPanelOverlay = document.getElementById("userPanelOverlay");
+            const closePanelBtn = document.getElementById("closePanelBtn");
+            const panelLogoutBtn = document.getElementById("panelLogoutBtn");
+
+            headerUserBadge.addEventListener("click", () => {
+                userPanelOverlay.classList.add("open");
+                menuToggle.classList.remove("open");
+                navContainer.classList.remove("open");
+            });
+
+            closePanelBtn.addEventListener("click", () => {
+                userPanelOverlay.classList.remove("open");
+            });
+
+            // पैनल के बाहर क्लिक करने पर भी बंद हो जाए
+            userPanelOverlay.addEventListener("click", (e) => {
+                if (e.target === userPanelOverlay) {
+                    userPanelOverlay.classList.remove("open");
+                }
+            });
+
+            //  terminat सेशन (लॉगआउट लॉजिक)
+            panelLogoutBtn.addEventListener("click", () => {
+                if(confirm("Do you want to terminate this secure session?")) {
+                    localStorage.removeItem("sky_matrix_session");
+                    window.location.reload();
+                }
+            });
+
             // 🔥 ३. रियल कस्टम रजिस्टर (Sign Up) लॉजिक
             const formRegister = document.getElementById("form-register");
             formRegister.addEventListener("submit", async (e) => {
@@ -657,7 +886,7 @@
 
                 if (password !== confirmPassword) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "Error: Passwords do not match!";
+                    statusMsg.innerText = "[!] एरर: पासवर्ड मैच नहीं हो रहे!";
                     return;
                 }
 
@@ -675,7 +904,7 @@
 
                 if (existingUser && existingUser.length > 0) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "Identity Error: Username already deployed!";
+                    statusMsg.innerText = "[!] आइडेंटिटी एरर: यूजरनेम पहले से डिप्लॉयड है!";
                     return;
                 }
 
@@ -694,7 +923,7 @@
                 }
             });
 
-            // 🔥 ४. रियल कस्टम साइन इन (Sign In) लॉजिक
+            // 🔥 ४. रियल कस्टमाइज्ड साइन इन (Sign In) लॉजिक (सटीक एरर लॉजिक के साथ)
             const formSignIn = document.getElementById("form-signin");
             formSignIn.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -705,7 +934,26 @@
                 const username = document.getElementById("signin-username").value.trim().toLowerCase();
                 const password = document.getElementById("signin-password").value;
 
-                // सुपाबेस टेबल में यूजरनेम और पासवर्ड चेक करो
+                // स्टेप १: पहले चेक करो कि यूजर मौजूद है या नहीं
+                const { data: userExists, error: userError } = await sbClient
+                    .from('profiles')
+                    .select('username')
+                    .eq('username', username);
+
+                if (userError) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Connection Error: " + userError.message;
+                    return;
+                }
+
+                if (!userExists || userExists.length === 0) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "[!] आइडेंटिटी एरर: नो एक्टिव डिप्लॉयमेंट फाउंड. रजिस्टर फर्स्ट!";
+                    formSignIn.reset();
+                    return;
+                }
+
+                // स्टेप २: यूजर मौजूद है, अब पासवर्ड चेक करो
                 const { data: userRecord, error: authError } = await sbClient
                     .from('profiles')
                     .select('*')
@@ -723,7 +971,7 @@
                     statusMsg.innerText = "Access Granted. Initializing Secure Node...";
                     
                     localStorage.setItem("sky_matrix_session", username);
-                    activateUserNode(username);
+                    activateUserUI(username);
                     
                     setTimeout(() => {
                         authOverlay.classList.remove("open");
@@ -731,10 +979,10 @@
                     }, 1000);
                 } else {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "Access Denied: No active deployment found. Register first!";
+                    statusMsg.innerText = "[!] एक्सेस डिनाइड: इनवैलिड पासवर्ड कोड!";
                 }
             });
         });
     </script>
 </body>
-</html>S
+</html>
