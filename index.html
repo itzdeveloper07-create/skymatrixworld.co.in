@@ -33,7 +33,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sky Matrix World - Corporate Hub</title>
     
-    <!-- ⚡ सुपाबेस फ्रंटएंड जावास्क्रिप्ट सीडीएन लाइब्रेरी -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -91,7 +90,6 @@
             pointer-events: none;
         }
 
-        /* 🌐 ग्लोबल कॉर्पोरेट नेविगेशन हेडर */
         .corporate-header {
             position: fixed;
             top: 0;
@@ -261,6 +259,7 @@
             margin-bottom: 20px;
         }
 
+        /* 🔐 फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल */
         .auth-overlay-portal {
             position: fixed;
             top: 0;
@@ -314,36 +313,50 @@
             color: #ff007a;
         }
 
-        .auth-header {
-            text-align: center;
-            margin-bottom: 25px;
+        .auth-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #1a1235;
+            padding-bottom: 10px;
         }
 
-        .auth-header h3 {
-            font-size: 1.4rem;
+        .auth-tab {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4b4563;
+            cursor: pointer;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            color: #ffffff;
-            margin-bottom: 8px;
+            transition: all 0.3s ease;
         }
 
-        .auth-header p {
-            font-size: 0.85rem;
-            color: #554e68;
-            letter-spacing: 0.5px;
+        .auth-tab.active {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+        }
+
+        .auth-form-wrapper {
+            display: none;
+        }
+
+        .auth-form-wrapper.active {
+            display: block;
         }
 
         .auth-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .input-box {
             width: 100%;
             background: #030108;
             border: 1.5px solid #1a1235;
-            padding: 18px 22px;
-            border-radius: 14px;
+            padding: 16px 20px;
+            border-radius: 12px;
             color: #ffffff;
             font-size: 1rem;
             outline: none;
@@ -359,8 +372,8 @@
             width: 100%;
             background: linear-gradient(90deg, #ff007a 0%, #763cd3 100%);
             border: none;
-            padding: 18px;
-            border-radius: 14px;
+            padding: 16px;
+            border-radius: 12px;
             color: #ffffff;
             font-size: 1.1rem;
             font-weight: 600;
@@ -452,7 +465,6 @@
     <div class="background-stars" id="starBg"></div>
     <div class="kinetic-grid"></div>
 
-    <!-- 🌐 कॉर्पोरेट हेडर -->
     <header class="corporate-header">
         <div class="corporate-logo">Sky Matrix</div>
         <div class="menu-toggle" id="menuToggle">
@@ -473,13 +485,11 @@
         </div>
     </header>
 
-    <!-- वेलकम स्क्रीन -->
     <section id="welcome-section">
         <div class="official-badge scroll-reveal">Global Enterprise Gateway</div>
         <div class="welcome-title scroll-reveal">SKY MATRIX WORLD</div>
     </section>
 
-    <!-- कॉर्पोरेट प्रोफाइल -->
     <section id="corporate-profile">
         <div class="section-tag scroll-reveal">Corporate Blueprint</div>
         <div class="corporate-container scroll-reveal">
@@ -495,25 +505,36 @@
         </div>
     </section>
 
-    <!-- 🔐 सुपाबेस मैजिक लिंक ऑथेंटिकेशन ओवरले पोर्टल -->
     <div class="auth-overlay-portal" id="authOverlay">
         <div class="auth-container">
             <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
             
-            <div class="auth-header">
-                <h3>Secure Node Access</h3>
-                <p>Passwordless Magic Link Verification</p>
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-signin">Sign In</div>
+                <div class="auth-tab" id="tab-register">Register</div>
             </div>
 
-            <form class="auth-form" id="magic-link-form">
-                <input type="email" class="input-box" id="auth-email" placeholder="Enter Corporate Email" required>
-                <button type="submit" class="auth-btn" id="send-link-btn">Initialize Session</button>
-                <div class="status-msg" id="statusMessage"></div>
-            </form>
+            <div class="auth-form-wrapper active" id="wrapper-signin">
+                <form class="auth-form" id="form-signin">
+                    <input type="text" class="input-box" id="signin-username" placeholder="Username" required>
+                    <input type="password" class="input-box" id="signin-password" placeholder="Password" required>
+                    <button type="submit" class="auth-btn">Initialize Session</button>
+                </form>
+            </div>
+
+            <div class="auth-form-wrapper" id="wrapper-register">
+                <form class="auth-form" id="form-register">
+                    <input type="text" class="input-box" id="reg-username" placeholder="Create Username" required>
+                    <input type="password" class="input-box" id="reg-password" placeholder="Create Password" required>
+                    <input type="password" class="input-box" id="reg-confirm-password" placeholder="Confirm Password" required>
+                    <button type="submit" class="auth-btn">Deploy Identity</button>
+                </form>
+            </div>
+
+            <div class="status-msg" id="statusMessage"></div>
         </div>
     </div>
 
-    <!-- लीगल फुटर -->
     <section id="footer-section">
         <div class="legal-links">
             <a href="#" class="legal-item">Privacy Policy</a>
@@ -523,44 +544,40 @@
         <div class="copyright">&copy; 2026 SKY MATRIX WORLD. All Rights Reserved. Secure Node Connection.</div>
     </section>
 
-    <!-- 🛠️ सुधरा हुआ जावास्क्रिप्ट ब्लॉक (टैग्स के साथ) -->
     <script>
         const SUPABASE_URL = "https://uopehfsrjbrphzqqbkkk.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvcGVoZnNyamJycGh6cXFia2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MzgzODQsImV4cCI6MjA5NzQxNDM4NH0.iq0g-j5Ni_n8Fg8YapparLiFz6uIu_ys63i2R71I9Zk";
         
         const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        document.addEventListener("DOMContentLoaded", async function() {
+        document.addEventListener("DOMContentLoaded", function() {
             const starBg = document.getElementById("starBg");
             const revealElements = document.querySelectorAll(".scroll-reveal");
             const openAuthBtn = document.getElementById("openAuthBtn");
+            const statusMsg = document.getElementById("statusMessage");
 
-            // लाइव सेशन चेक फंक्शन
-            async function checkUserSession() {
-                const { data: { session }, error } = await sbClient.auth.getSession();
-                
-                if (session && session.user) {
-                    const userEmail = session.user.email;
-                    openAuthBtn.innerText = `NODE: ${userEmail.split('@')[0].toUpperCase()}`;
-                    openAuthBtn.style.border = "1px solid #00ff66";
-                    openAuthBtn.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.4)";
-                    
-                    openAuthBtn.onclick = async () => {
-                        if(confirm("Do you want to terminate this secure session?")) {
-                            await sbClient.auth.signOut();
-                            window.location.reload();
-                        }
-                    };
+            // ब्राउज़र सेशन चेक (लोकल स्टोरेज की मदद से सेशन मैन्टेन रखना)
+            function checkLocalSession() {
+                const loggedUser = localStorage.getItem("sky_matrix_session");
+                if (loggedUser) {
+                    activateUserNode(loggedUser);
                 }
             }
-            
-            checkUserSession();
 
-            sbClient.auth.onAuthStateChange((event, session) => {
-                if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
-                    checkUserSession();
-                }
-            });
+            function activateUserNode(username) {
+                openAuthBtn.innerText = `NODE: ${username.toUpperCase()}`;
+                openAuthBtn.style.border = "1px solid #00ff66";
+                openAuthBtn.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.4)";
+                
+                openAuthBtn.onclick = () => {
+                    if(confirm("Do you want to terminate this secure session?")) {
+                        localStorage.removeItem("sky_matrix_session");
+                        window.location.reload();
+                    }
+                };
+            }
+
+            checkLocalSession();
 
             // पैरालाक्स स्टार एनीमेशन
             window.addEventListener("scroll", function() {
@@ -590,13 +607,13 @@
                 navContainer.classList.toggle("open");
             });
 
-            // ऑथेंटिकेशन ओवरले कंट्रोल्स
+            // ऑथेंटिकेशन ओवरले कंट्रोल्स और टैब स्विचिंग लॉजिक
             const closeAuthBtn = document.getElementById("closeAuthBtn");
             const authOverlay = document.getElementById("authOverlay");
-            const magicLinkForm = document.getElementById("magic-link-form");
-            const emailInput = document.getElementById("auth-email");
-            const statusMsg = document.getElementById("statusMessage");
-            const sendBtn = document.getElementById("send-link-btn");
+            const tabSignIn = document.getElementById("tab-signin");
+            const tabRegister = document.getElementById("tab-register");
+            const wrapperSignIn = document.getElementById("wrapper-signin");
+            const wrapperRegister = document.getElementById("wrapper-register");
 
             openAuthBtn.addEventListener("click", () => {
                 if (!openAuthBtn.innerText.includes("NODE:")) {
@@ -604,7 +621,6 @@
                     menuToggle.classList.remove("open");
                     navContainer.classList.remove("open");
                     statusMsg.style.display = "none";
-                    emailInput.value = "";
                 }
             });
 
@@ -612,34 +628,112 @@
                 authOverlay.classList.remove("open");
             });
 
-            // मैजिक लिंक लॉगिन सबमिशन लॉजिक
-            magicLinkForm.addEventListener("submit", async (e) => {
-                e.preventDefault();
-                const email = emailInput.value;
+            tabSignIn.addEventListener("click", () => {
+                tabSignIn.classList.add("active");
+                tabRegister.classList.remove("active");
+                wrapperSignIn.classList.add("active");
+                wrapperRegister.classList.remove("active");
+                statusMsg.style.display = "none";
+            });
 
-                sendBtn.disabled = true;
-                sendBtn.innerText = "Transmitting Link...";
+            tabRegister.addEventListener("click", () => {
+                tabRegister.classList.add("active");
+                tabSignIn.classList.remove("active");
+                wrapperRegister.classList.add("active");
+                wrapperSignIn.classList.remove("active");
+                statusMsg.style.display = "none";
+            });
+
+            // 🔥 ३. रियल कस्टम रजिस्टर (Sign Up) लॉजिक
+            const formRegister = document.getElementById("form-register");
+            formRegister.addEventListener("submit", async (e) => {
+                e.preventDefault();
                 statusMsg.style.display = "block";
                 statusMsg.style.color = "#00f0ff";
-                statusMsg.innerText = "Connecting to Supabase Nodes...";
+                statusMsg.innerText = "Transmitting registration protocols...";
 
-                const { data, error } = await sbClient.auth.signInWithOtp({
-                    email: email,
-                    options: {
-                        emailRedirectTo: window.location.origin
-                    }
-                });
+                const username = document.getElementById("reg-username").value.trim().toLowerCase();
+                const password = document.getElementById("reg-password").value;
+                const confirmPassword = document.getElementById("reg-confirm-password").value;
 
-                sendBtn.disabled = false;
-                sendBtn.innerText = "Initialize Session";
-
-                if (error) {
+                if (password !== confirmPassword) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "Transmission Error: " + error.message;
+                    statusMsg.innerText = "Error: Passwords do not match!";
+                    return;
+                }
+
+                // पहले चेक करो कि यूजरनेम पहले से तो मौजूद नहीं है
+                const { data: existingUser, error: fetchError } = await sbClient
+                    .from('profiles')
+                    .select('username')
+                    .eq('username', username);
+
+                if (fetchError) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Database Connection Error: " + fetchError.message;
+                    return;
+                }
+
+                if (existingUser && existingUser.length > 0) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Identity Error: Username already deployed!";
+                    return;
+                }
+
+                // सुपाबेस की 'profiles' टेबल में कस्टम डेटा इंसर्ट करो
+                const { error: insertError } = await sbClient
+                    .from('profiles')
+                    .insert([{ username: username, password: password }]);
+
+                if (insertError) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Insertion Error: " + insertError.message;
                 } else {
                     statusMsg.style.color = "#00ff66";
-                    statusMsg.innerHTML = "🛸 <strong>Transmission Successful!</strong><br>A secure access link has been deployed to your inbox. Open it to verify session!";
-                    emailInput.value = "";
+                    statusMsg.innerHTML = "🏆 <strong>Identity Successfully Deployed!</strong><br>Switch to Sign In tab to access your secure session.";
+                    formRegister.reset();
+                }
+            });
+
+            // 🔥 ४. रियल कस्टम साइन इन (Sign In) लॉजिक
+            const formSignIn = document.getElementById("form-signin");
+            formSignIn.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                statusMsg.style.display = "block";
+                statusMsg.style.color = "#00f0ff";
+                statusMsg.innerText = "Verifying secure credentials...";
+
+                const username = document.getElementById("signin-username").value.trim().toLowerCase();
+                const password = document.getElementById("signin-password").value;
+
+                // सुपाबेस टेबल में यूजरनेम और पासवर्ड चेक करो
+                const { data: userRecord, error: authError } = await sbClient
+                    .from('profiles')
+                    .select('*')
+                    .eq('username', username)
+                    .eq('password', password);
+
+                if (authError) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Auth Error: " + authError.message;
+                    return;
+                }
+
+                if (userRecord && userRecord.length > 0) {
+                    statusMsg.style.color = "#00ff66";
+                    statusMsg.innerText = "Access Granted. Initializing Secure Node...";
+                    
+                    // लोकल स्टोरेज में सेशन स्टोर करना
+                    localStorage.setItem("sky_matrix_session", username);
+                    activateUserNode(username);
+                    
+                    setTimeout(() => {
+                        authOverlay.classList.remove("open");
+                        formSignIn.reset();
+                    }, 1000);
+                } else {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Access Denied: No active deployment found. Register first!";
                 }
             });
         });
