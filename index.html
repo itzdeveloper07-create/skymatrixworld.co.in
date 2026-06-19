@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html laag="en">
+<html lang="en">
 <head>
     <link rel="icon" href="logo.png" type="image/png">
     <link align="apple-touch-icon" href="logo.png">
@@ -33,6 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sky Matrix World - Corporate Hub</title>
     
+    <!-- ⚡ सुपाबेस फ्रंटएंड जावास्क्रिप्ट सीडीएन लाइब्रेरी -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -51,7 +52,6 @@
             width: 100%;
         }
 
-        /* प्रीमियम कस्टम साइबरपंक स्क्रॉलबार */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -164,7 +164,6 @@
             transform: translateY(-1px);
         }
 
-        /* 📱 मोबाइल के लिए हैमबर्गर मेनू बटन */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -193,6 +192,7 @@
             width: 100%;
         }
 
+        /* 🛠️ फिक्स: शुरुआती विजिबिलिटी इशू को रोकने के लिए ओपेसिटी सेटिंग्स */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -205,7 +205,6 @@
             transform: translateY(0);
         }
 
-        /* --- वेलकम सेक्शन --- */
         #welcome-section {
             background: radial-gradient(circle at center, #0e0624 0%, #030107 100%);
         }
@@ -231,7 +230,6 @@
             margin-bottom: 25px;
         }
 
-        /* --- कॉर्पोरेट प्रोफाइल --- */
         #corporate-profile {
             background-color: #05030e;
             border-top: 1px solid #110926;
@@ -264,7 +262,6 @@
             margin-bottom: 20px;
         }
 
-        /* 🔐 फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल */
         .auth-overlay-portal {
             position: fixed;
             top: 0;
@@ -380,7 +377,6 @@
             filter: brightness(1.1);
         }
 
-        /* स्टेटस मैसेज का बॉक्स */
         .status-msg {
             font-size: 0.95rem;
             text-align: center;
@@ -389,7 +385,6 @@
             line-height: 1.4;
         }
 
-        /* --- कॉर्पोरेट फुटर --- */
         #footer-section {
             background: #010003;
             min-height: 40vh;
@@ -458,6 +453,7 @@
     <div class="background-stars" id="starBg"></div>
     <div class="kinetic-grid"></div>
 
+    <!-- 🌐 कॉर्पोरेट हेडर (फिक्स: लिंक्स को सबडोमेन्स की तरफ रूट कर दिया है) -->
     <header class="corporate-header">
         <div class="corporate-logo">Sky Matrix</div>
         <div class="menu-toggle" id="menuToggle">
@@ -467,22 +463,24 @@
         </div>
         <div class="nav-container" id="navContainer">
             <nav class="nav-links">
-                <a href="#" class="nav-item active">Gateway</a>
-                <a href="#" class="nav-item">UI Matrix</a>
-                <a href="#" class="nav-item">Developers</a>
-                <a href="#" class="nav-item">Updates</a>
-                <a href="#" class="nav-item">Support</a>
-                <a href="#" class="nav-item">Biography</a>
+                <a href="https://skymatrixworld.co.in" class="nav-item active">Gateway</a>
+                <a href="https://ui.skymatrixworld.co.in" class="nav-item">UI Matrix</a>
+                <a href="https://developers.skymatrixworld.co.in" class="nav-item">Developers</a>
+                <a href="https://updates.skymatrixworld.co.in" class="nav-item">Updates</a>
+                <a href="https://support.skymatrixworld.co.in" class="nav-item">Support</a>
+                <a href="https://shree.skymatrixworld.co.in" class="nav-item">Biography</a>
             </nav>
             <button class="header-signin-btn" id="openAuthBtn">Sign In</button>
         </div>
     </header>
 
+    <!-- वेलकम स्क्रीन -->
     <section id="welcome-section">
         <div class="official-badge scroll-reveal">Global Enterprise Gateway</div>
         <div class="welcome-title scroll-reveal">SKY MATRIX WORLD</div>
     </section>
 
+    <!-- कॉर्पोरेट प्रोफाइल -->
     <section id="corporate-profile">
         <div class="section-tag scroll-reveal">Corporate Blueprint</div>
         <div class="corporate-container scroll-reveal">
@@ -498,6 +496,7 @@
         </div>
     </section>
 
+    <!-- 🔐 सुपाबेस मैजिक लिंक ऑथेंटिकेशन ओवरले पोर्टल -->
     <div class="auth-overlay-portal" id="authOverlay">
         <div class="auth-container">
             <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
@@ -515,6 +514,7 @@
         </div>
     </div>
 
+    <!-- लीगल फुटर -->
     <section id="footer-section">
         <div class="legal-links">
             <a href="#" class="legal-item">Privacy Policy</a>
@@ -525,24 +525,24 @@
     </section>
 
     <script>
-        // 1. ⚡ सुपाबेस इंजन की सेफ पब्लिक कॉन्फ़िगरेशन
+        // 🛠️ फिक्स: वेरिएबल डिक्लेरेशन एरर को पूरी तरह ठीक कर दिया है!
         const SUPABASE_URL = "https://uopehfsrjbrphzqqbkkk.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvcGVoZnNyamJycGh6cXFia2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MzgzODQsImV4cCI6MjA5NzQxNDM4NH0.iq0g-j5Ni_n8Fg8YapparLiFz6uIu_ys63i2R71I9Zk";
         
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.addEventListener("DOMContentLoaded", function() {
             const starBg = document.getElementById("starBg");
             const revealElements = document.querySelectorAll(".scroll-reveal");
 
-            // 2. पैरालाक्स स्टार एनीमेशन
+            // पैरालाक्स स्टार एनीमेशन
             window.addEventListener("scroll", function() {
                 let scrollPos = window.pageYOffset;
                 starBg.style.transform = "translateY(" + (scrollPos * 0.25) + "px)";
             }, { passive: true });
 
-            // 3. इंटरसेक्शन ऑब्जर्वर एनीमेशन
-            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.08 };
+            // इंटरसेक्शन ऑब्जर्वर एनीमेशन (अब मक्खन जैसा चलेगा!)
+            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.05 };
             const elementObserver = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -554,7 +554,7 @@
 
             revealElements.forEach(element => { elementObserver.observe(element); });
 
-            // 4. 📱 मोबाइल हैमबर्गर मेनू स्क्रिप्ट
+            // मोबाइल हैमबर्गर मेनू स्क्रिप्ट
             const menuToggle = document.getElementById("menuToggle");
             const navContainer = document.getElementById("navContainer");
 
@@ -563,7 +563,14 @@
                 navContainer.classList.toggle("open");
             });
 
-            // 5. 🔐 ऑथेंटिकेशन ओवरले कंट्रोल्स
+            document.querySelectorAll(".nav-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    menuToggle.classList.remove("open");
+                    navContainer.classList.remove("open");
+                });
+            });
+
+            // ऑथेंटिकेशन ओवरले कंट्रोल्स
             const openAuthBtn = document.getElementById("openAuthBtn");
             const closeAuthBtn = document.getElementById("closeAuthBtn");
             const authOverlay = document.getElementById("authOverlay");
@@ -584,7 +591,7 @@
                 authOverlay.classList.remove("open");
             });
 
-            // 6. 🔥 जादुई मैजिक लिंक लॉगिन ट्रिगर स्क्रिप्ट (Pure Supabase Live Connection)
+            // जादुई मैजिक लिंक लॉगिन ट्रिगर स्क्रिप्ट
             magicLinkForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 const email = emailInput.value;
@@ -595,11 +602,10 @@
                 statusMsg.style.color = "#00f0ff";
                 statusMsg.innerText = "Connecting to Supabase Nodes...";
 
-                // सुपाबेस का मैजिक लिंक फंक्शन ट्रिगर
-                const { data, error } = await supabase.auth.signInWithOtp({
+                const { data, error } = await sbClient.auth.signInWithOtp({
                     email: email,
                     options: {
-                        emailRedirectTo: window.location.origin // लॉगिन होने के बाद यूजर वापस इसी साइट पर आएगा
+                        emailRedirectTo: window.location.origin
                     }
                 });
 
@@ -611,7 +617,7 @@
                     statusMsg.innerText = "Transmission Error: " + error.message;
                 } else {
                     statusMsg.style.color = "#00ff66";
-                    statusMsg.innerHTML = "🛸 <strong>Transmission Successful!</strong><br>A secure quantum access link has been deployed to your inbox. Check your email to unlock the session!";
+                    statusMsg.innerHTML = "🛸 <strong>Transmission Successful!</strong><br>A secure access link has been deployed to your inbox. Open it to verify session!";
                     emailInput.value = "";
                 }
             });
