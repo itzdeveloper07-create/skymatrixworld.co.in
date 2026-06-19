@@ -32,6 +32,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sky Matrix World - Corporate Hub</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         * {
             margin: 0;
@@ -48,6 +51,7 @@
             width: 100%;
         }
 
+        /* प्रीमियम कस्टम साइबरपंक स्क्रॉलबार */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -139,7 +143,6 @@
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
         }
 
-        /* ⚡ हेडर का प्रीमियम साइन-इन बटन */
         .header-signin-btn {
             background: linear-gradient(90deg, rgba(255, 0, 122, 0.2), rgba(0, 240, 255, 0.2));
             border: 1px solid #ff007a;
@@ -261,7 +264,7 @@
             margin-bottom: 20px;
         }
 
-        /* 🔐 गॉड-लेवल फीचर: फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल (अलग पेज की वाइब) */
+        /* 🔐 फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल */
         .auth-overlay-portal {
             position: fixed;
             top: 0;
@@ -301,7 +304,6 @@
             transform: scale(1);
         }
 
-        /* क्लोज़ बटन */
         .close-auth-btn {
             position: absolute;
             top: 20px;
@@ -316,36 +318,28 @@
             color: #ff007a;
         }
 
-        .auth-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            margin-bottom: 35px;
+        .auth-header {
+            text-align: center;
+            margin-bottom: 25px;
         }
 
-        .auth-tab {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #4b4563;
-            cursor: pointer;
-            text-transform: uppercase;
+        .auth-header h3 {
+            font-size: 1.4rem;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            color: #ffffff;
+            margin-bottom: 8px;
         }
 
-        .auth-tab.active {
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 0, 122, 0.5);
+        .auth-header p {
+            font-size: 0.85rem;
+            color: #554e68;
+            letter-spacing: 0.5px;
         }
 
         .auth-form {
-            display: none;
+            display: flex;
             flex-direction: column;
             gap: 20px;
-        }
-
-        .auth-form.active {
-            display: flex;
         }
 
         .input-box {
@@ -378,12 +372,21 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .auth-btn:hover {
             box-shadow: 0 0 20px rgba(255, 0, 122, 0.4);
             filter: brightness(1.1);
+        }
+
+        /* स्टेटस मैसेज का बॉक्स */
+        .status-msg {
+            font-size: 0.95rem;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+            line-height: 1.4;
         }
 
         /* --- कॉर्पोरेट फुटर --- */
@@ -422,83 +425,31 @@
             letter-spacing: 1px;
         }
 
-        /* =======================================================
-           🚀 खास मोबाइल के लिए कस्टमाइज्ड रिस्पॉन्सिव CSS
-           ======================================================= */
         @media (max-width: 768px) {
-            .corporate-header {
-                padding: 16px 24px;
-            }
-
-            /* मोबाइल पर हैमबर्गर आइकॉन ऑन होगा */
-            .menu-toggle {
-                display: flex;
-            }
-
-            /* मोबाइल पर लिंक्स और बटन छुपाकर साइड-ड्रॉअर मेनू में बदल जाएंगे */
+            .corporate-header { padding: 16px 24px; }
+            .menu-toggle { display: flex; }
             .nav-container {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                width: 260px;
-                height: 100vh;
+                top: 0; right: -100%;
+                width: 260px; height: 100vh;
                 background: rgba(8, 5, 19, 0.98);
                 backdrop-filter: blur(15px);
                 border-left: 1px solid rgba(0, 240, 255, 0.1);
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 100px 30px;
-                gap: 35px;
+                padding: 100px 30px; gap: 35px;
                 transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             }
-
-            .nav-container.open {
-                right: 0;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 25px;
-                width: 100%;
-            }
-
-            .nav-item {
-                font-size: 1.05rem;
-                display: block;
-                width: 100%;
-            }
-
-            .header-signin-btn {
-                width: 100%;
-                text-align: center;
-                padding: 14px;
-            }
-
-            /* हैमबर्गर क्लिक एनिमेशन (Cross Effect) */
-            .menu-toggle.open span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
-            }
-            .menu-toggle.open span:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-toggle.open span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -7px);
-            }
-
-            .welcome-title {
-                font-size: 2.3rem;
-                letter-spacing: 2px;
-            }
-
-            .corporate-container {
-                padding: 26px 20px;
-                border-radius: 16px;
-            }
-
-            .corporate-text {
-                font-size: 1.05rem;
-                line-height: 1.7;
-            }
+            .nav-container.open { right: 0; }
+            .nav-links { flex-direction: column; gap: 25px; width: 100%; }
+            .nav-item { font-size: 1.05rem; display: block; width: 100%; }
+            .header-signin-btn { width: 100%; text-align: center; padding: 14px; }
+            .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .menu-toggle.open span:nth-child(2) { opacity: 0; }
+            .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+            .welcome-title { font-size: 2.3rem; letter-spacing: 2px; }
+            .corporate-container { padding: 26px 20px; border-radius: 16px; }
+            .corporate-text { font-size: 1.05rem; line-height: 1.7; }
         }
     </style>
 </head>
@@ -509,13 +460,11 @@
 
     <header class="corporate-header">
         <div class="corporate-logo">Sky Matrix</div>
-        
         <div class="menu-toggle" id="menuToggle">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
         <div class="nav-container" id="navContainer">
             <nav class="nav-links">
                 <a href="#" class="nav-item active">Gateway</a>
@@ -553,22 +502,15 @@
         <div class="auth-container">
             <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
             
-            <div class="auth-tabs">
-                <div class="auth-tab active" id="tab-login">Sign In</div>
-                <div class="auth-tab" id="tab-register">Register</div>
+            <div class="auth-header">
+                <h3>Secure Node Access</h3>
+                <p>Passwordless Magic Link Verification</p>
             </div>
 
-            <form class="auth-form active" id="form-login" onsubmit="event.preventDefault(); alert('Session Initialization ongoing...');">
-                <input type="email" class="input-box" placeholder="Corporate Email" required>
-                <input type="password" class="input-box" placeholder="Access Password" required>
-                <button type="submit" class="auth-btn">Initialize Session</button>
-            </form>
-
-            <form class="auth-form" id="form-register" onsubmit="event.preventDefault(); alert('Identity Deployment ongoing...');">
-                <input type="text" class="input-box" placeholder="Full Name" required>
-                <input type="email" class="input-box" placeholder="Corporate Email" required>
-                <input type="password" class="input-box" placeholder="Create Secure Password" required>
-                <button type="submit" class="auth-btn">Deploy Identity</button>
+            <form class="auth-form" id="magic-link-form">
+                <input type="email" class="input-box" id="auth-email" placeholder="Enter Corporate Email" required>
+                <button type="submit" class="auth-btn" id="send-link-btn">Initialize Session</button>
+                <div class="status-msg" id="statusMessage"></div>
             </form>
         </div>
     </div>
@@ -583,17 +525,23 @@
     </section>
 
     <script>
+        // 1. ⚡ सुपाबेस इंजन की सेफ पब्लिक कॉन्फ़िगरेशन
+        const SUPABASE_URL = "https://uopehfsrjbrphzqqbkkk.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvcGVoZnNyamJycGh6cXFia2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MzgzODQsImV4cCI6MjA5NzQxNDM4NH0.iq0g-j5Ni_n8Fg8YapparLiFz6uIu_ys63i2R71I9Zk";
+        
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         document.addEventListener("DOMContentLoaded", function() {
             const starBg = document.getElementById("starBg");
             const revealElements = document.querySelectorAll(".scroll-reveal");
 
-            // 1. पैरालाक्स स्टार शिफ्ट
+            // 2. पैरालाक्स स्टार एनीमेशन
             window.addEventListener("scroll", function() {
                 let scrollPos = window.pageYOffset;
                 starBg.style.transform = "translateY(" + (scrollPos * 0.25) + "px)";
             }, { passive: true });
 
-            // 2. इंटरसेक्शन ऑब्जर्वर एनीमेशन
+            // 3. इंटरसेक्शन ऑब्जर्वर एनीमेशन
             const observerOptions = { root: null, rootMargin: "0px", threshold: 0.08 };
             const elementObserver = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
@@ -606,7 +554,7 @@
 
             revealElements.forEach(element => { elementObserver.observe(element); });
 
-            // 3. 📱 मोबाइल हैमबर्गर मेनू स्क्रिप्ट
+            // 4. 📱 मोबाइल हैमबर्गर मेनू स्क्रिप्ट
             const menuToggle = document.getElementById("menuToggle");
             const navContainer = document.getElementById("navContainer");
 
@@ -615,46 +563,57 @@
                 navContainer.classList.toggle("open");
             });
 
-            // लिंक्स पर क्लिक करते ही मोबाइल मेनू अपने आप बंद हो जाएगा
-            document.querySelectorAll(".nav-item").forEach(item => {
-                item.addEventListener("click", () => {
-                    menuToggle.classList.remove("open");
-                    navContainer.classList.remove("open");
-                });
-            });
-
-            // 4. 🔐 ऑथेंटिकेशन ओवरले कंट्रोल्स (Sign In बटन क्लिक लॉजिक)
+            // 5. 🔐 ऑथेंटिकेशन ओवरले कंट्रोल्स
             const openAuthBtn = document.getElementById("openAuthBtn");
             const closeAuthBtn = document.getElementById("closeAuthBtn");
             const authOverlay = document.getElementById("authOverlay");
-            const tabLogin = document.getElementById("tab-login");
-            const tabRegister = document.getElementById("tab-register");
-            const formLogin = document.getElementById("form-login");
-            const formRegister = document.getElementById("form-register");
+            const magicLinkForm = document.getElementById("magic-link-form");
+            const emailInput = document.getElementById("auth-email");
+            const statusMsg = document.getElementById("statusMessage");
+            const sendBtn = document.getElementById("send-link-btn");
 
             openAuthBtn.addEventListener("click", () => {
                 authOverlay.classList.add("open");
-                // अगर मोबाइल मेनू खुला है, तो उसे बंद कर दो
                 menuToggle.classList.remove("open");
                 navContainer.classList.remove("open");
+                statusMsg.style.display = "none";
+                emailInput.value = "";
             });
 
             closeAuthBtn.addEventListener("click", () => {
                 authOverlay.classList.remove("open");
             });
 
-            tabLogin.addEventListener("click", () => {
-                tabLogin.classList.add("active");
-                tabRegister.classList.remove("active");
-                formLogin.classList.add("active");
-                formRegister.classList.remove("active");
-            });
+            // 6. 🔥 जादुई मैजिक लिंक लॉगिन ट्रिगर स्क्रिप्ट (Pure Supabase Live Connection)
+            magicLinkForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const email = emailInput.value;
 
-            tabRegister.addEventListener("click", () => {
-                tabRegister.classList.add("active");
-                tabLogin.classList.remove("active");
-                formRegister.classList.add("active");
-                formLogin.classList.remove("active");
+                sendBtn.disabled = true;
+                sendBtn.innerText = "Transmitting Link...";
+                statusMsg.style.display = "block";
+                statusMsg.style.color = "#00f0ff";
+                statusMsg.innerText = "Connecting to Supabase Nodes...";
+
+                // सुपाबेस का मैजिक लिंक फंक्शन ट्रिगर
+                const { data, error } = await supabase.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                        emailRedirectTo: window.location.origin // लॉगिन होने के बाद यूजर वापस इसी साइट पर आएगा
+                    }
+                });
+
+                sendBtn.disabled = false;
+                sendBtn.innerText = "Initialize Session";
+
+                if (error) {
+                    statusMsg.style.color = "#ff007a";
+                    statusMsg.innerText = "Transmission Error: " + error.message;
+                } else {
+                    statusMsg.style.color = "#00ff66";
+                    statusMsg.innerHTML = "🛸 <strong>Transmission Successful!</strong><br>A secure quantum access link has been deployed to your inbox. Check your email to unlock the session!";
+                    emailInput.value = "";
+                }
             });
         });
     </script>
