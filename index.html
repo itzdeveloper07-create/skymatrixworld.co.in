@@ -4,7 +4,7 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link align="apple-touch-icon" href="logo.png">
 
-    <meta name="keywords" content="स्काई矩阵वर्ल्ड, Sky Matrix World, स्काई मैट्रिक्स, Sky Matrix, कॉर्पोरेट गेटवे, Cypher AI Official, Sky Matrix Nashik">
+    <meta name="keywords" content="स्काई मैट्रिक्स वर्ल्ड, Sky Matrix World, स्काई मैट्रिक्स, Sky Matrix, कॉर्पोरेट गेटवे, Cypher AI Official, Sky Matrix Nashik">
     <meta name="description" content="Welcome to the official corporate portal of Sky Matrix World. Powering next-generation artificial intelligence with the CYPHER AI protocol. Global enterprise operations live from Nashik.">
     <meta name="author" content="Sky Matrix World">
     <meta property="og:title" content="Sky Matrix World - Corporate Portal">
@@ -141,7 +141,6 @@
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
         }
 
-        /* 🌟 पहले जैसा ओरिजिनल स्लिम नियॉन बटन यूआई (साइन इन के लिए) */
         .header-signin-btn {
             background: linear-gradient(90deg, rgba(255, 0, 122, 0.2), rgba(0, 240, 255, 0.2));
             border: 1px solid #ff007a;
@@ -163,7 +162,6 @@
             transform: translateY(-1px);
         }
 
-        /* 🌟 लॉगिन के बाद का एलीट नियॉन बटन यूआई (कार्टून अवतार हटाया) */
         .header-user-btn {
             background: linear-gradient(90deg, rgba(0, 255, 102, 0.15), rgba(0, 240, 255, 0.15));
             border: 1px solid #00ff66;
@@ -177,7 +175,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-            display: none; /* लॉगिन होने पर स्क्रिप्ट से चालू होगा */
+            display: none;
         }
 
         .header-user-btn:hover {
@@ -420,7 +418,7 @@
             line-height: 1.4;
         }
 
-        /* 🚀 प्रीमियम नियॉन यूजर स्लाइडर पैनल (पूरी तरह कस्टमाइज्ड) */
+        /* 🚀 प्रीमियम नियॉन यूजर स्लाइडर पैनल */
         .user-panel-overlay {
             position: fixed;
             top: 0;
@@ -431,7 +429,7 @@
             backdrop-filter: blur(20px);
             z-index: 2000;
             display: flex;
-            justify-content: flex-end;
+            justify-flex-end;
             transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -448,7 +446,7 @@
             padding: 60px 30px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 25px;
             position: relative;
         }
 
@@ -474,7 +472,7 @@
             text-align: center;
             margin-top: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 25px;
+            padding-bottom: 20px;
         }
 
         .panel-username {
@@ -499,17 +497,74 @@
             box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
         }
 
+        /* ⚡ मल्टी-अकाउंट्स कंटेनर और बटन्स स्टाइल */
+        .accounts-section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #554e68;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .accounts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .account-node-item {
+            width: 100%;
+            background: rgba(14, 9, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px 18px;
+            border-radius: 10px;
+            color: #cbbfdc;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+        }
+
+        .account-node-item:hover {
+            border-color: #00f0ff;
+            color: #00f0ff;
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        .account-node-item.active-node {
+            border-color: #00ff66;
+            color: #00ff66;
+            background: rgba(0, 255, 102, 0.05);
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
+        }
+
+        .active-dot {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
         .panel-actions {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             height: 100%;
+            margin-top: 10px;
         }
 
         .panel-action-btn {
             background: rgba(8, 5, 19, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 16px;
+            padding: 15px;
             border-radius: 12px;
             color: #ffffff;
             font-size: 0.95rem;
@@ -530,11 +585,10 @@
             background: rgba(14, 9, 30, 0.8);
         }
 
-        /* 🔴 लॉगआउट का कड़क क्लीन बटन */
         .panel-action-btn.logout-btn {
             border-color: #ff007a;
             color: #ff007a;
-            margin-top: auto; /* बटन को बिल्कुल नीचे धकेलेगा */
+            margin-top: auto; 
         }
 
         .panel-action-btn.logout-btn:hover {
@@ -627,7 +681,6 @@
                 <a href="https://shree.skymatrixworld.co.in" class="nav-item">Biography</a>
             </nav>
             <button class="header-signin-btn" id="openAuthBtn">Sign In</button>
-            
             <button class="header-user-btn" id="headerUserBtn">Offline</button>
         </div>
     </header>
@@ -691,6 +744,10 @@
                 <div class="panel-status-tag">Core User Active</div>
             </div>
 
+            <div class="accounts-section-title">Active Identities</div>
+            <div class="accounts-list" id="accountsListContainer">
+                </div>
+
             <div class="panel-actions">
                 <button class="panel-action-btn" id="addIdentityBtn">
                     + Add Another Identity
@@ -724,37 +781,68 @@
             const headerUserBtn = document.getElementById("headerUserBtn");
             const panelUsername = document.getElementById("panelUsername");
             const statusMsg = document.getElementById("statusMessage");
+            const accountsListContainer = document.getElementById("accountsListContainer");
 
-            // परमानेंट लॉगिन चेक (फोन रीस्टार्ट पर भी लॉगआउट नहीं होगा)
-            function checkLocalSession() {
-                const loggedUser = localStorage.getItem("sky_matrix_session");
-                if (loggedUser) {
-                    activateUserUI(loggedUser);
+            // ⚡ मल्टी-अकाउंट्स स्टेट को लोकलस्टोरेज से लोड करने का फंक्शन
+            function loadMultiAccountSession() {
+                let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
+                let activeUser = localStorage.getItem("sky_matrix_active");
+
+                if (activeUser && accounts.includes(activeUser)) {
+                    activateUserUI(activeUser);
+                } else if (accounts.length > 0) {
+                    // अगर एक्टिव नहीं सेट है पर लिस्ट में हैं, तो पहले वाले को एक्टिव कर दो
+                    localStorage.setItem("sky_matrix_active", accounts[0]);
+                    activateUserUI(accounts[0]);
+                } else {
+                    // कोई अकाउंट लॉग इन नहीं है
+                    openAuthBtn.style.display = "block";
+                    headerUserBtn.style.display = "none";
                 }
+                renderAccountsList();
             }
 
             function activateUserUI(username) {
                 const upperUsername = username.toUpperCase();
-                
-                // ओरिजिनल लुक: पुराना बटन छिपाओ, नया एलीट यूजर बटन दिखाओ
                 openAuthBtn.style.display = "none";
                 headerUserBtn.style.display = "block";
                 headerUserBtn.innerText = upperUsername;
-                
-                // स्लाइडर पैनल के अंदर डेटा सिंक करो
                 panelUsername.innerText = upperUsername;
             }
 
-            checkLocalSession();
+            // ⚡ स्लाइडर के अंदर सारे खातों की रेंडरिंग और स्विचिंग
+            function renderAccountsList() {
+                accountsListContainer.innerHTML = "";
+                let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
+                let activeUser = localStorage.getItem("sky_matrix_active");
 
-            // पैरालाक्स स्टार एनीमेशन
+                accounts.forEach(user => {
+                    const btn = document.createElement("button");
+                    btn.className = "account-node-item";
+                    if (user === activeUser) {
+                        btn.classList.add("active-node");
+                        btn.innerHTML = `<span>${user}</span> <span class="active-dot">(Active)</span>`;
+                    } else {
+                        btn.innerHTML = `<span>${user}</span>`;
+                        // 🔄 क्लिक करने पर बिना रीलोड तुरंत अकाउंट स्विचिंग!
+                        btn.addEventListener("click", () => {
+                            localStorage.setItem("sky_matrix_active", user);
+                            activateUserUI(user);
+                            renderAccountsList();
+                        });
+                    }
+                    accountsListContainer.appendChild(btn);
+                });
+            }
+
+            loadMultiAccountSession();
+
+            // एनीमेशन और स्क्रॉल लॉजिक
             window.addEventListener("scroll", function() {
                 let scrollPos = window.pageYOffset;
                 starBg.style.transform = "translateY(" + (scrollPos * 0.25) + "px)";
             }, { passive: true });
 
-            // Intersection Observer एनीमेशन
-            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.05 };
             const elementObserver = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -762,20 +850,19 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { root: null, rootMargin: "0px", threshold: 0.05 });
 
             revealElements.forEach(element => { elementObserver.observe(element); });
 
-            // मोबाइल हैमबर्गर मेनू स्क्रिप्ट
+            // मोबाइल नेविगेशन
             const menuToggle = document.getElementById("menuToggle");
             const navContainer = document.getElementById("navContainer");
-
             menuToggle.addEventListener("click", () => {
                 menuToggle.classList.toggle("open");
                 navContainer.classList.toggle("open");
             });
 
-            // ऑथेंटिकेशन ओवरले कंट्रोल्स और टैब स्विचिंग लॉजिक
+            // ऑथेंटिकेशन विंडोज लॉजिक
             const closeAuthBtn = document.getElementById("closeAuthBtn");
             const authOverlay = document.getElementById("authOverlay");
             const tabSignIn = document.getElementById("tab-signin");
@@ -785,8 +872,6 @@
 
             openAuthBtn.addEventListener("click", () => {
                 authOverlay.classList.add("open");
-                menuToggle.classList.remove("open");
-                navContainer.classList.remove("open");
                 statusMsg.style.display = "none";
             });
 
@@ -806,11 +891,11 @@
                 tabRegister.classList.add("active");
                 tabSignIn.classList.remove("active");
                 wrapperRegister.classList.add("active");
-                wrapperSignIn.classList.remove("active");
+                wrapperSignIn.classList.add("active");
                 statusMsg.style.display = "none";
             });
 
-            // 🚀 यूजर पैनल स्लाइडर कंट्रोल्स (ओरिजिनल नियॉन बटन क्लिक पर खुलेगा)
+            // स्लाइडर पैनल कंट्रोल
             const userPanelOverlay = document.getElementById("userPanelOverlay");
             const closePanelBtn = document.getElementById("closePanelBtn");
             const panelLogoutBtn = document.getElementById("panelLogoutBtn");
@@ -818,8 +903,7 @@
 
             headerUserBtn.addEventListener("click", () => {
                 userPanelOverlay.classList.add("open");
-                menuToggle.classList.remove("open");
-                navContainer.classList.remove("open");
+                renderAccountsList(); // ओपन होते ही लिस्ट री-फ्रेश करें
             });
 
             closePanelBtn.addEventListener("click", () => {
@@ -827,29 +911,39 @@
             });
 
             userPanelOverlay.addEventListener("click", (e) => {
-                if (e.target === userPanelOverlay) {
-                    userPanelOverlay.classList.remove("open");
-                }
+                if (e.target === userPanelOverlay) userPanelOverlay.classList.remove("open");
             });
 
-            // ➕ ऐड अनादर आइडेंटिटी (मल्टीपल अकाउंट फीचर)
+            // ➕ Add Another Identity (पुराना लॉगआउट किए बिना नया अकाउंट जोड़ना)
             addIdentityBtn.addEventListener("click", () => {
-                userPanelOverlay.classList.remove("open"); // स्लाइडर बंद करो
-                authOverlay.classList.add("open"); // ऑथ पोर्टल खोलो ताकि नया अकाउंट जुड़ सके
+                userPanelOverlay.classList.remove("open");
+                authOverlay.classList.add("open");
                 statusMsg.style.display = "block";
                 statusMsg.style.color = "#00f0ff";
-                statusMsg.innerText = "Ready to deploy or switch to another identity node.";
+                statusMsg.innerText = "Connect an additional identity to your secure terminal block.";
             });
 
-            // 🔴 क्लीन लॉगआउट लॉजिक
+            // 🔴 स्मार्ट लॉगआउट (सिर्फ करंट अकाउंट हटेगा, बाकी सेफ रहेंगे!)
             panelLogoutBtn.addEventListener("click", () => {
-                if(confirm("Do you want to log out from this secure session?")) {
-                    localStorage.removeItem("sky_matrix_session");
-                    window.location.reload();
+                let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
+                let activeUser = localStorage.getItem("sky_matrix_active");
+
+                if(confirm(`Do you want to log out from ${activeUser.toUpperCase()}?`)) {
+                    // सिर्फ एक्टिव यूजर को ऐरे से रिमूव करो
+                    accounts = accounts.filter(user => user !== activeUser);
+                    localStorage.setItem("sky_matrix_accounts", JSON.stringify(accounts));
+                    
+                    if (accounts.length > 0) {
+                        localStorage.setItem("sky_matrix_active", accounts[0]);
+                    } else {
+                        localStorage.removeItem("sky_matrix_active");
+                    }
+                    userPanelOverlay.classList.remove("open");
+                    loadMultiAccountSession(); // UI स्टेट रीलोड करो
                 }
             });
 
-            // 🔥 ३. रियल कस्टम रजिस्टर (Sign Up) लॉजिक
+            // 🔥 डेटाबेस रजिस्टर लॉजिक
             const formRegister = document.getElementById("form-register");
             formRegister.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -874,7 +968,7 @@
 
                 if (fetchError) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "Database Connection Error: " + fetchError.message;
+                    statusMsg.innerText = "Database Error: " + fetchError.message;
                     return;
                 }
 
@@ -893,12 +987,12 @@
                     statusMsg.innerText = "Insertion Error: " + insertError.message;
                 } else {
                     statusMsg.style.color = "#00ff66";
-                    statusMsg.innerHTML = "🏆 <strong>Identity Successfully Deployed!</strong><br>Switch to Sign In tab to access your secure session.";
+                    statusMsg.innerHTML = "🏆 <strong>Identity Successfully Deployed!</strong><br>Now switch to Sign In tab to link this account.";
                     formRegister.reset();
                 }
             });
 
-            // 🔥 ४. रियल कस्टमाइज्ड साइन इन (Sign In) लॉजिक (सटीक एरर लॉजिक)
+            // 🔥 कस्टमाइज्ड मल्टी-अकाउंट साइन इन लॉजिक
             const formSignIn = document.getElementById("form-signin");
             formSignIn.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -909,7 +1003,7 @@
                 const username = document.getElementById("signin-username").value.trim().toLowerCase();
                 const password = document.getElementById("signin-password").value;
 
-                // स्टेप १: चेक करो यूजर है या नहीं
+                // स्टेप १: यूजर एक्सिस्टेंस चेक
                 const { data: userExists, error: userError } = await sbClient
                     .from('profiles')
                     .select('username')
@@ -928,7 +1022,7 @@
                     return;
                 }
 
-                // स्टेप २: पासवर्ड वेरिफिकेशन
+                // स्टेप २: पासवर्ड ऑथेंटिकेशन
                 const { data: userRecord, error: authError } = await sbClient
                     .from('profiles')
                     .select('*')
@@ -943,10 +1037,19 @@
 
                 if (userRecord && userRecord.length > 0) {
                     statusMsg.style.color = "#00ff66";
-                    statusMsg.innerText = "Access Granted. Initializing Secure Node...";
+                    statusMsg.innerText = "Access Granted. Linking Identity Node...";
                     
-                    localStorage.setItem("sky_matrix_session", username);
+                    // ⚡ खातों के ऐरे में नया अकाउंट पुश करो (अगर पहले से नहीं है)
+                    let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
+                    if (!accounts.includes(username)) {
+                        accounts.push(username);
+                    }
+                    
+                    localStorage.setItem("sky_matrix_accounts", JSON.stringify(accounts));
+                    localStorage.setItem("sky_matrix_active", username); // इसे एक्टिव बनाओ
+                    
                     activateUserUI(username);
+                    renderAccountsList();
                     
                     setTimeout(() => {
                         authOverlay.classList.remove("open");
