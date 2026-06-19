@@ -1,539 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="icon" href="logo.png" type="image/png">
-    <link align="apple-touch-icon" href="logo.png">
-
-    <meta name="keywords" content="स्काई मैट्रिक्स वर्ल्ड, Sky Matrix World, स्काई मैट्रिक्स, Sky Matrix, कॉर्पोरेट गेटवे, Cypher AI Official, Sky Matrix Nashik">
-    <meta name="description" content="Welcome to the official corporate portal of Sky Matrix World. Powering next-generation artificial intelligence with the CYPHER AI protocol. Global enterprise operations live from Nashik.">
-    <meta name="author" content="Sky Matrix World">
-    <meta property="og:title" content="Sky Matrix World - Corporate Portal">
-    <meta property="og:description" content="The official futuristic ecosystem of Sky Matrix World, powered by CYPHER AI protocol. Secure corporate infrastructure.">
-    <meta property="og:type" content="website">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Sky Matrix World",
-      "url": "http://skymatrixworld.co.in",
-      "logo": "http://skymatrixworld.co.in/logo.png",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Nashik",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "India"
-      },
-      "knowsAbout": ["Artificial Intelligence", "Ecosystem Architecture", "CYPHER AI Protocol"],
-      "description": "Sky Matrix World is an emerging technology corporation engineering next-generation artificial intelligence protocols and decentralized ecosystem infrastructures."
-    }
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sky Matrix World - Corporate Hub</title>
-    
-    <!-- ⚡ सुपाबेस फ्रंटएंड जावास्क्रिप्ट सीडीएन लाइब्रेरी -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #030107;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030107;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00f0ff, #ff007a);
-            border-radius: 10px;
-        }
-
-        .background-stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            background: radial-gradient(white, rgba(255,255,255,.08) 1px, transparent 30px);
-            background-size: 300px 300px;
-            opacity: 0.15;
-            z-index: -2;
-            will-change: transform;
-        }
-
-        .kinetic-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* 🌐 ग्लोबल कॉर्पोरेट नेविगेशन हेडर */
-        .corporate-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(3, 1, 7, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-            z-index: 1000;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .corporate-logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, #00f0ff, #ff007a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 22px;
-        }
-
-        .nav-item {
-            color: #8f88a0;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            color: #00f0ff;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-        }
-
-        .header-signin-btn {
-            background: linear-gradient(90deg, rgba(255, 0, 122, 0.2), rgba(0, 240, 255, 0.2));
-            border: 1px solid #ff007a;
-            padding: 10px 22px;
-            border-radius: 50px;
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 0, 122, 0.2);
-        }
-
-        .header-signin-btn:hover {
-            border-color: #00f0ff;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-            transform: translateY(-1px);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background-color: #ffffff;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px;
-            position: relative;
-            text-align: center;
-            width: 100%;
-        }
-
-        /* 🛠️ फिक्स: शुरुआती विजिबिलिटी इशू को रोकने के लिए ओपेसिटी सेटिंग्स */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: opacity, transform;
-        }
-
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #welcome-section {
-            background: radial-gradient(circle at center, #0e0624 0%, #030107 100%);
-        }
-
-        .official-badge {
-            font-size: 1.1rem;
-            color: #00f0ff;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-        }
-
-        .welcome-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #ffffff, #8572b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 25px;
-        }
-
-        #corporate-profile {
-            background-color: #05030e;
-            border-top: 1px solid #110926;
-        }
-
-        .section-tag {
-            font-size: 1.2rem;
-            color: #ff007a;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 0, 122, 0.3);
-        }
-
-        .corporate-container {
-            max-width: 850px;
-            width: 100%;
-            background: rgba(14, 9, 30, 0.5);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: left;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .corporate-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #cbbfdc;
-            margin-bottom: 20px;
-        }
-
-        .auth-overlay-portal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(3, 1, 7, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .auth-overlay-portal.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .auth-container {
-            width: 100%;
-            max-width: 412px;
-            background: #080513;
-            border: 1px solid #1c143a;
-            border-radius: 28px;
-            padding: 45px 35px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0, 240, 255, 0.1);
-            position: relative;
-            transform: scale(0.9);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .auth-overlay-portal.open .auth-container {
-            transform: scale(1);
-        }
-
-        .close-auth-btn {
-            position: absolute;
-            top: 20px;
-            right: 22px;
-            font-size: 1.8rem;
-            color: #554e68;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-auth-btn:hover {
-            color: #ff007a;
-        }
-
-        .auth-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .auth-header h3 {
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .auth-header p {
-            font-size: 0.85rem;
-            color: #554e68;
-            letter-spacing: 0.5px;
-        }
-
-        .auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .input-box {
-            width: 100%;
-            background: #030108;
-            border: 1.5px solid #1a1235;
-            padding: 18px 22px;
-            border-radius: 14px;
-            color: #ffffff;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-
-        .input-box:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
-        }
-
-        .auth-btn {
-            width: 100%;
-            background: linear-gradient(90deg, #ff007a 0%, #763cd3 100%);
-            border: none;
-            padding: 18px;
-            border-radius: 14px;
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-
-        .auth-btn:hover {
-            box-shadow: 0 0 20px rgba(255, 0, 122, 0.4);
-            filter: brightness(1.1);
-        }
-
-        .status-msg {
-            font-size: 0.95rem;
-            text-align: center;
-            margin-top: 10px;
-            display: none;
-            line-height: 1.4;
-        }
-
-        #footer-section {
-            background: #010003;
-            min-height: 40vh;
-            border-top: 1px solid #110926;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        .legal-links {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .legal-item {
-            color: #554e68;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .legal-item:hover {
-            color: #ff007a;
-        }
-
-        .copyright {
-            font-size: 0.85rem;
-            color: #3b364a;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 768px) {
-            .corporate-header { padding: 16px 24px; }
-            .menu-toggle { display: flex; }
-            .nav-container {
-                position: fixed;
-                top: 0; right: -100%;
-                width: 260px; height: 100vh;
-                background: rgba(8, 5, 19, 0.98);
-                backdrop-filter: blur(15px);
-                border-left: 1px solid rgba(0, 240, 255, 0.1);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 100px 30px; gap: 35px;
-                transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            }
-            .nav-container.open { right: 0; }
-            .nav-links { flex-direction: column; gap: 25px; width: 100%; }
-            .nav-item { font-size: 1.05rem; display: block; width: 100%; }
-            .header-signin-btn { width: 100%; text-align: center; padding: 14px; }
-            .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-            .menu-toggle.open span:nth-child(2) { opacity: 0; }
-            .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
-            .welcome-title { font-size: 2.3rem; letter-spacing: 2px; }
-            .corporate-container { padding: 26px 20px; border-radius: 16px; }
-            .corporate-text { font-size: 1.05rem; line-height: 1.7; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="background-stars" id="starBg"></div>
-    <div class="kinetic-grid"></div>
-
-    <!-- 🌐 कॉर्पोरेट हेडर (फिक्स: लिंक्स को सबडोमेन्स की तरफ रूट कर दिया है) -->
-    <header class="corporate-header">
-        <div class="corporate-logo">Sky Matrix</div>
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-container" id="navContainer">
-            <nav class="nav-links">
-                <a href="https://skymatrixworld.co.in" class="nav-item active">Gateway</a>
-                <a href="https://ui.skymatrixworld.co.in" class="nav-item">UI Matrix</a>
-                <a href="https://developers.skymatrixworld.co.in" class="nav-item">Developers</a>
-                <a href="https://updates.skymatrixworld.co.in" class="nav-item">Updates</a>
-                <a href="https://support.skymatrixworld.co.in" class="nav-item">Support</a>
-                <a href="https://shree.skymatrixworld.co.in" class="nav-item">Biography</a>
-            </nav>
-            <button class="header-signin-btn" id="openAuthBtn">Sign In</button>
-        </div>
-    </header>
-
-    <!-- वेलकम स्क्रीन -->
-    <section id="welcome-section">
-        <div class="official-badge scroll-reveal">Global Enterprise Gateway</div>
-        <div class="welcome-title scroll-reveal">SKY MATRIX WORLD</div>
-    </section>
-
-    <!-- कॉर्पोरेट प्रोफाइल -->
-    <section id="corporate-profile">
-        <div class="section-tag scroll-reveal">Corporate Blueprint</div>
-        <div class="corporate-container scroll-reveal">
-            <p class="corporate-text">
-                Welcome to the unified core gateway of <strong>Sky Matrix World</strong>. We operate as a high-tier technology ecosystem dedicated to architectural engineering, infrastructure scaling, and advanced intelligence optimizations.
-            </p>
-            <p class="corporate-text">
-                Our central operational focus is the development of the highly anticipated <strong>CYPHER AI</strong> protocol. By structuring decentralized node frameworks and high-performance computation blocks, our infrastructure delivers robust reliability and secure deployment channels globally.
-            </p>
-            <p class="corporate-text" style="margin-bottom: 0;">
-                The corporate grid is securely online. All subsidiary operations, technical parameters, developer assets, and legal protocols are distributed seamlessly across our structured network nodes.
-            </p>
-        </div>
-    </section>
-
-    <!-- 🔐 सुपाबेस मैजिक लिंक ऑथेंटिकेशन ओवरले पोर्टल -->
-    <div class="auth-overlay-portal" id="authOverlay">
-        <div class="auth-container">
-            <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
-            
-            <div class="auth-header">
-                <h3>Secure Node Access</h3>
-                <p>Passwordless Magic Link Verification</p>
-            </div>
-
-            <form class="auth-form" id="magic-link-form">
-                <input type="email" class="input-box" id="auth-email" placeholder="Enter Corporate Email" required>
-                <button type="submit" class="auth-btn" id="send-link-btn">Initialize Session</button>
-                <div class="status-msg" id="statusMessage"></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- लीगल फुटर -->
-    <section id="footer-section">
-        <div class="legal-links">
-            <a href="#" class="legal-item">Privacy Policy</a>
-            <a href="#" class="legal-item">Terms of Service</a>
-            <a href="#" class="legal-item">Cookie Protocol</a>
-        </div>
-        <div class="copyright">&copy; 2026 SKY MATRIX WORLD. All Rights Reserved. Secure Node Connection.</div>
-    </section>
-
-    <script>
-        // 🛠️ फिक्स: वेरिएबल डिक्लेरेशन एरर को पूरी तरह ठीक कर दिया है!
+// 🛠️ पहले से मौजूद सुपाबेस क्लाइंट कॉन्फ़िगरेशन
         const SUPABASE_URL = "https://uopehfsrjbrphzqqbkkk.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvcGVoZnNyamJycGh6cXFia2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MzgzODQsImV4cCI6MjA5NzQxNDM4NH0.iq0g-j5Ni_n8Fg8YapparLiFz6uIu_ys63i2R71I9Zk";
         
         const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", async function() {
             const starBg = document.getElementById("starBg");
             const revealElements = document.querySelectorAll(".scroll-reveal");
+            const openAuthBtn = document.getElementById("openAuthBtn");
+
+            // 🚀 न्यू फीचर: लिंक क्लिक करके आए यूजर का सेशन चेक करना
+            async function checkUserSession() {
+                const { data: { session }, error } = await sbClient.auth.getSession();
+                
+                if (session && session.user) {
+                    // अगर यूजर लॉग इन है, तो हेडर का बटन बदल दो
+                    const userEmail = session.user.email;
+                    openAuthBtn.innerText = `NODE: ${userEmail.split('@')[0].toUpperCase()}`;
+                    openAuthBtn.style.border = "1px solid #00ff66";
+                    openAuthBtn.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.4)";
+                    
+                    // बटन पर क्लिक करने पर लॉगआउट का ऑप्शन दे सकते हैं
+                    openAuthBtn.onclick = async () => {
+                        if(confirm("Do you want to terminate this secure session?")) {
+                            await sbClient.auth.signOut();
+                            window.location.reload();
+                        }
+                    };
+                }
+            }
+            
+            // सेशन चेक रन करें
+            checkUserSession();
+
+            // सुपाबेस ऑथ स्टेट चेंज लिस्नर (अगर लाइव लॉगिन इवेंट होता है)
+            sbClient.auth.onAuthStateChange((event, session) => {
+                if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
+                    checkUserSession();
+                }
+            });
 
             // पैरालाक्स स्टार एनीमेशन
             window.addEventListener("scroll", function() {
@@ -541,7 +46,7 @@
                 starBg.style.transform = "translateY(" + (scrollPos * 0.25) + "px)";
             }, { passive: true });
 
-            // इंटरसेक्शन ऑब्जर्वर एनीमेशन (अब मक्खन जैसा चलेगा!)
+            // Intersection Observer एनीमेशन
             const observerOptions = { root: null, rootMargin: "0px", threshold: 0.05 };
             const elementObserver = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
@@ -563,15 +68,7 @@
                 navContainer.classList.toggle("open");
             });
 
-            document.querySelectorAll(".nav-item").forEach(item => {
-                item.addEventListener("click", () => {
-                    menuToggle.classList.remove("open");
-                    navContainer.classList.remove("open");
-                });
-            });
-
             // ऑथेंटिकेशन ओवरले कंट्रोल्स
-            const openAuthBtn = document.getElementById("openAuthBtn");
             const closeAuthBtn = document.getElementById("closeAuthBtn");
             const authOverlay = document.getElementById("authOverlay");
             const magicLinkForm = document.getElementById("magic-link-form");
@@ -580,18 +77,21 @@
             const sendBtn = document.getElementById("send-link-btn");
 
             openAuthBtn.addEventListener("click", () => {
-                authOverlay.classList.add("open");
-                menuToggle.classList.remove("open");
-                navContainer.classList.remove("open");
-                statusMsg.style.display = "none";
-                emailInput.value = "";
+                // अगर पहले से लॉग इन नहीं है तभी ओवरले खोलो
+                if (!openAuthBtn.innerText.includes("NODE:")) {
+                    authOverlay.classList.add("open");
+                    menuToggle.classList.remove("open");
+                    navContainer.classList.remove("open");
+                    statusMsg.style.display = "none";
+                    emailInput.value = "";
+                }
             });
 
             closeAuthBtn.addEventListener("click", () => {
                 authOverlay.classList.remove("open");
             });
 
-            // जादुई मैजिक लिंक लॉगिन ट्रिगर स्क्रिप्ट
+            // मैजिक लिंक लॉगिन सबमिट स्क्रिप्ट
             magicLinkForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 const email = emailInput.value;
@@ -622,6 +122,3 @@
                 }
             });
         });
-    </script>
-</body>
-</html>
