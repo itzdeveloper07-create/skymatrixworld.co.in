@@ -33,6 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sky Matrix World - Corporate Hub</title>
     
+    <!-- ⚡ सुपाबेस फ्रंटएंड जावास्क्रिप्ट सीडीएन लाइब्रेरी -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -251,6 +252,8 @@
         #corporate-profile {
             background-color: #05030e;
             border-top: 1px solid #110926;
+            min-height: auto;
+            padding-bottom: 60px;
         }
 
         .section-tag {
@@ -278,6 +281,117 @@
             line-height: 1.8;
             color: #cbbfdc;
             margin-bottom: 20px;
+        }
+
+        /* 🎛️ प्रीमियम इकोसिस्टम डायरेक्टरी सेक्शन स्टाइल */
+        #ecosystem-directory {
+            background-color: #030107;
+            border-top: 1px solid #110926;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .directory-grid {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .node-card {
+            background: rgba(10, 6, 22, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-left: 3px solid #00f0ff;
+            padding: 30px;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .node-card:hover {
+            transform: translateY(-5px);
+            background: rgba(14, 9, 30, 0.7);
+            border-color: rgba(0, 240, 255, 0.3);
+            border-left-color: #ff007a;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.08);
+        }
+
+        .node-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .node-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .node-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: #00f0ff;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node-card:hover .node-tag {
+            background: rgba(255, 0, 122, 0.08);
+            border-color: rgba(255, 0, 122, 0.2);
+            color: #ff007a;
+        }
+
+        .node-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #a59cb8;
+            margin-bottom: 20px;
+        }
+
+        .node-guide-box {
+            background: rgba(3, 1, 7, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbbfdc;
+        }
+
+        .node-guide-box strong {
+            color: #00ff66;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .node-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: #00f0ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .node-link-btn:hover {
+            color: #ff007a;
         }
 
         /* 🔐 फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल */
@@ -429,7 +543,7 @@
             backdrop-filter: blur(20px);
             z-index: 2000;
             display: flex;
-            justify-flex-end;
+            justify-content: flex-end;
             transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -497,7 +611,6 @@
             box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
         }
 
-        /* ⚡ मल्टी-अकाउंट्स कंटेनर और बटन्स स्टाइल */
         .accounts-section-title {
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -656,6 +769,7 @@
             .welcome-title { font-size: 2.3rem; letter-spacing: 2px; }
             .corporate-container { padding: 26px 20px; border-radius: 16px; }
             .corporate-text { font-size: 1.05rem; line-height: 1.7; }
+            .directory-grid { grid-template-columns: 1fr; gap: 20px; }
         }
     </style>
 </head>
@@ -664,6 +778,7 @@
     <div class="background-stars" id="starBg"></div>
     <div class="kinetic-grid"></div>
 
+    <!-- 🌐 कॉर्पोरेट हेडर -->
     <header class="corporate-header">
         <div class="corporate-logo">Sky Matrix</div>
         <div class="menu-toggle" id="menuToggle">
@@ -685,11 +800,13 @@
         </div>
     </header>
 
+    <!-- वेलकम स्क्रीन -->
     <section id="welcome-section">
         <div class="official-badge scroll-reveal">Global Enterprise Gateway</div>
         <div class="welcome-title scroll-reveal">SKY MATRIX WORLD</div>
     </section>
 
+    <!-- कॉर्पोरेट प्रोफाइल -->
     <section id="corporate-profile">
         <div class="section-tag scroll-reveal">Corporate Blueprint</div>
         <div class="corporate-container scroll-reveal">
@@ -705,6 +822,92 @@
         </div>
     </section>
 
+    <!-- 🎛️ नया इकोसिस्टम नोड नेटवर्क डायरेक्टरी (विस्तृत विवरण के साथ) -->
+    <section id="ecosystem-directory">
+        <div class="section-tag scroll-reveal">Ecosystem Directory</div>
+        <div class="official-badge scroll-reveal" style="font-size: 0.9rem; margin-bottom: 5px;">Distributed Infrastructure Routing</div>
+        
+        <div class="directory-grid">
+            
+            <!-- 1. UI MATRIX CARD -->
+            <div class="node-card scroll-reveal">
+                <div class="node-card-header">
+                    <div class="node-title">UI Matrix</div>
+                    <div class="node-tag">Sub-Node 01</div>
+                </div>
+                <p class="node-desc">
+                    यह स्काई मैट्रिक्स का फ्रंटएंड डिज़ाइन लैब और विज़ुअल इंटरफेस हब है, जो हमारे पूरे नेटवर्क की डिज़ाइन्स को कंट्रोल करता है।
+                </p>
+                <div class="node-guide-box">
+                    🎯 **यदि तुम यह जानना चाहते हो:** कि **CYPHER AI** के अपकमिंग और लाइव यूजर इंटरफेस कैसे दिखते हैं, या तुम फ्यूचरिस्टिक टेक और नेक्स्ट-जेन यूआई कंपोनेंट्स को लाइव एक्सपीरियंस करना चाहते हो, तो तुम इस नोड पर जा सकते हो।
+                </div>
+                <a href="https://ui.skymatrixworld.co.in" class="node-link-btn" target="_blank">Connect Node &rarr;</a>
+            </div>
+
+            <!-- 2. DEVELOPERS CARD -->
+            <div class="node-card scroll-reveal" style="border-left-color: #ff007a;">
+                <div class="node-card-header">
+                    <div class="node-title">Developers</div>
+                    <div class="node-tag">Sub-Node 02</div>
+                </div>
+                <p class="node-desc">
+                    यह स्काई मैट्रिक्स का सेंट्रल बैकएंड कोर और टेक्निकल आर्किटेक्चर है, जहाँ डेवलपर्स के लिए एलीट टूल्स होस्टेड हैं।
+                </p>
+                <div class="node-guide-box">
+                    🎯 **यदि तुम यह जानना चाहते हो:** कि हमारे ऑफिशियल एपीआई (APIs) कैसे काम करते हैं, टेक आर्किटेक्चर का ढांचा कैसा है, या तुम कोडिंग ब्लॉक्स और कोर सुपाबेस इंटीग्रेशन फ़्रेमवर्क्स को एक्सेस करना चाहते हो, तो तुम इस नोड पर जा सकते हो।
+                </div>
+                <a href="https://developers.skymatrixworld.co.in" class="node-link-btn" style="color: #ff007a;" target="_blank">Connect Node &rarr;</a>
+            </div>
+
+            <!-- 3. BIOGRAPHY CARD -->
+            <div class="node-card scroll-reveal" style="border-left-color: #00ff66;">
+                <div class="node-card-header">
+                    <div class="node-title">Biography</div>
+                    <div class="node-tag">Sub-Node 03</div>
+                </div>
+                <p class="node-desc">
+                    यह स्काई मैट्रिक्स वर्ल्ड के ओरिजिन की गाथा है, जो हमारे लीडरशिप विज़न और कंपनी की स्थापना को दर्शाती है।
+                </p>
+                <div class="node-guide-box">
+                    🎯 **यदि तुम यह जानना चाहते हो:** कि इस विशाल साम्राज्य और **CYPHER AI** प्रोटोकॉल को बनाने के पीछे का मास्टरमाइंड कौन है, उनका विज़न, उनका पर्सनल सफर, इंस्पिरेशन और टेक गोल्स क्या हैं, तो तुम इस नोड पर जा सकते हो।
+                </div>
+                <a href="https://shree.skymatrixworld.co.in" class="node-link-btn" style="color: #00ff66;" target="_blank">Connect Node &rarr;</a>
+            </div>
+
+            <!-- 4. UPDATES CARD -->
+            <div class="node-card scroll-reveal" style="border-left-color: #763cd3;">
+                <div class="node-card-header">
+                    <div class="node-title">Updates Log</div>
+                    <div class="node-tag">Sub-Node 04</div>
+                </div>
+                <p class="node-desc">
+                    यह हमारे पूरे इंफ्रास्ट्रक्चर का लाइव न्यूज़ रूम और टाइमलाइन ट्रैकर है, जहाँ नेटवर्क से जुड़ी हर खबर स्टोर होती है।
+                </p>
+                <div class="node-guide-box">
+                    🎯 **यदि तुम यह जानना चाहते हो:** कि हमारी कंपनी में रोज़ाना क्या नया डेवलपमेंट हो रहा है, लेटेस्ट न्यूज़ आर्टिकल्स पढ़ना चाहते हो, या सर्वर अपटाइम चेंजलॉग्स और अपकमिंग प्रोजेक्ट्स की लाइव ट्रैकिंग देखना चाहते हो, तो तुम इस नोड पर जा सकते हो।
+                </div>
+                <a href="https://updates.skymatrixworld.co.in" class="node-link-btn" style="color: #763cd3;" target="_blank">Connect Node &rarr;</a>
+            </div>
+
+            <!-- 5. SUPPORT CARD (Centered or full grid in layout) -->
+            <div class="node-card scroll-reveal" style="border-left-color: #00f0ff; grid-column: span 2;">
+                <div class="node-card-header">
+                    <div class="node-title">Support Desk</div>
+                    <div class="node-tag">Sub-Node 05</div>
+                </div>
+                <p class="node-desc">
+                    यह स्काई मैट्रिक्स कम्युनिटी के लिए डायरेक्ट हेल्पडेस्क और कम्युनिकेशन लिंक है, जो यूजर्स की सुरक्षा और सहायता सुनिश्चित करता है।
+                </p>
+                <div class="node-guide-box">
+                    🎯 **यदि तुम यह जानना चाहते हो:** कि किसी नोड एक्सेस में आ रहे बग्स या टेक्निकल एरर्स को कैसे रिपोर्ट करें, कंपनी को अपने आइडियाज कैसे भेजें, या तुम्हारी आइडेंटिटी क्रेडेंशियल्स को रिकवर करने के लिए टीम से डायरेक्ट हेल्प चाहिए, तो तुम इस नोड पर जा सकते हो।
+                </div>
+                <a href="https://support.skymatrixworld.co.in" class="node-link-btn" target="_blank">Connect Node &rarr;</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 🔐 ऑथेंटिकेशन ओवरले पोर्टल -->
     <div class="auth-overlay-portal" id="authOverlay">
         <div class="auth-container">
             <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
@@ -714,6 +917,7 @@
                 <div class="auth-tab" id="tab-register">Register</div>
             </div>
 
+            <!-- १. साइन इन (Sign In) फॉर्म -->
             <div class="auth-form-wrapper active" id="wrapper-signin">
                 <form class="auth-form" id="form-signin">
                     <input type="text" class="input-box" id="signin-username" placeholder="Username" required>
@@ -722,6 +926,7 @@
                 </form>
             </div>
 
+            <!-- २. रजिस्टर (Register) फॉर्म -->
             <div class="auth-form-wrapper" id="wrapper-register">
                 <form class="auth-form" id="form-register">
                     <input type="text" class="input-box" id="reg-username" placeholder="Create Username" required>
@@ -735,6 +940,7 @@
         </div>
     </div>
 
+    <!-- 🚀 अभिनव मल्टी-अकाउंट यूजर पैनल स्लाइडर -->
     <div class="user-panel-overlay" id="userPanelOverlay">
         <div class="user-panel">
             <div class="close-panel-btn" id="closePanelBtn">&times;</div>
@@ -746,7 +952,8 @@
 
             <div class="accounts-section-title">Active Identities</div>
             <div class="accounts-list" id="accountsListContainer">
-                </div>
+                <!-- बटन्स यहाँ जनरेट होंगे -->
+            </div>
 
             <div class="panel-actions">
                 <button class="panel-action-btn" id="addIdentityBtn">
@@ -759,6 +966,7 @@
         </div>
     </div>
 
+    <!-- लीगल फुटर -->
     <section id="footer-section">
         <div class="legal-links">
             <a href="#" class="legal-item">Privacy Policy</a>
@@ -768,6 +976,7 @@
         <div class="copyright">&copy; 2026 SKY MATRIX WORLD. All Rights Reserved. Secure Node Connection.</div>
     </section>
 
+    <!-- 🛠️ सुपाबेस मल्टी-अकाउंट डिप्लॉयमेंट लॉजिक स्क्रिप्ट -->
     <script>
         const SUPABASE_URL = "https://sektybsrcaqjslnlxmdy.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNla3R5YnNyY2FxanNsbmx4bWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NDc5NzUsImV4cCI6MjA5NzQyMzk3NX0.JD_HiMDgZH0kz96EAlCLH66K8VobY81aweYX_Ls2JCQ";
@@ -783,19 +992,16 @@
             const statusMsg = document.getElementById("statusMessage");
             const accountsListContainer = document.getElementById("accountsListContainer");
 
-            // ⚡ मल्टी-अकाउंट्स स्टेट को लोकलस्टोरेज से लोड करने का फंक्शन
-            function loadMultiAccountSession() {
-                let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
-                let activeUser = localStorage.getItem("sky_matrix_active");
+            function checkLocalSession() {
+                const accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
+                const activeUser = localStorage.getItem("sky_matrix_active");
 
                 if (activeUser && accounts.includes(activeUser)) {
                     activateUserUI(activeUser);
                 } else if (accounts.length > 0) {
-                    // अगर एक्टिव नहीं सेट है पर लिस्ट में हैं, तो पहले वाले को एक्टिव कर दो
                     localStorage.setItem("sky_matrix_active", accounts[0]);
                     activateUserUI(accounts[0]);
                 } else {
-                    // कोई अकाउंट लॉग इन नहीं है
                     openAuthBtn.style.display = "block";
                     headerUserBtn.style.display = "none";
                 }
@@ -810,11 +1016,10 @@
                 panelUsername.innerText = upperUsername;
             }
 
-            // ⚡ स्लाइडर के अंदर सारे खातों की रेंडरिंग और स्विचिंग
             function renderAccountsList() {
                 accountsListContainer.innerHTML = "";
-                let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
-                let activeUser = localStorage.getItem("sky_matrix_active");
+                const accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
+                const activeUser = localStorage.getItem("sky_matrix_active");
 
                 accounts.forEach(user => {
                     const btn = document.createElement("button");
@@ -824,7 +1029,6 @@
                         btn.innerHTML = `<span>${user}</span> <span class="active-dot">(Active)</span>`;
                     } else {
                         btn.innerHTML = `<span>${user}</span>`;
-                        // 🔄 क्लिक करने पर बिना रीलोड तुरंत अकाउंट स्विचिंग!
                         btn.addEventListener("click", () => {
                             localStorage.setItem("sky_matrix_active", user);
                             activateUserUI(user);
@@ -835,7 +1039,8 @@
                 });
             }
 
-            loadMultiAccountSession();
+            loadMultiAccountSession = checkLocalSession; 
+            checkLocalSession();
 
             // एनीमेशन और स्क्रॉल लॉजिक
             window.addEventListener("scroll", function() {
@@ -891,7 +1096,7 @@
                 tabRegister.classList.add("active");
                 tabSignIn.classList.remove("active");
                 wrapperRegister.classList.add("active");
-                wrapperSignIn.classList.add("active");
+                wrapperSignIn.classList.remove("active");
                 statusMsg.style.display = "none";
             });
 
@@ -903,7 +1108,7 @@
 
             headerUserBtn.addEventListener("click", () => {
                 userPanelOverlay.classList.add("open");
-                renderAccountsList(); // ओपन होते ही लिस्ट री-फ्रेश करें
+                renderAccountsList();
             });
 
             closePanelBtn.addEventListener("click", () => {
@@ -914,7 +1119,6 @@
                 if (e.target === userPanelOverlay) userPanelOverlay.classList.remove("open");
             });
 
-            // ➕ Add Another Identity (पुराना लॉगआउट किए बिना नया अकाउंट जोड़ना)
             addIdentityBtn.addEventListener("click", () => {
                 userPanelOverlay.classList.remove("open");
                 authOverlay.classList.add("open");
@@ -923,13 +1127,11 @@
                 statusMsg.innerText = "Connect an additional identity to your secure terminal block.";
             });
 
-            // 🔴 स्मार्ट लॉगआउट (सिर्फ करंट अकाउंट हटेगा, बाकी सेफ रहेंगे!)
             panelLogoutBtn.addEventListener("click", () => {
                 let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
                 let activeUser = localStorage.getItem("sky_matrix_active");
 
                 if(confirm(`Do you want to log out from ${activeUser.toUpperCase()}?`)) {
-                    // सिर्फ एक्टिव यूजर को ऐरे से रिमूव करो
                     accounts = accounts.filter(user => user !== activeUser);
                     localStorage.setItem("sky_matrix_accounts", JSON.stringify(accounts));
                     
@@ -939,11 +1141,11 @@
                         localStorage.removeItem("sky_matrix_active");
                     }
                     userPanelOverlay.classList.remove("open");
-                    loadMultiAccountSession(); // UI स्टेट रीलोड करो
+                    checkLocalSession();
                 }
             });
 
-            // 🔥 डेटाबेस रजिस्टर लॉजिक
+            // रजिस्टर सबमिशन लॉजिक
             const formRegister = document.getElementById("form-register");
             formRegister.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -992,7 +1194,7 @@
                 }
             });
 
-            // 🔥 कस्टमाइज्ड मल्टी-अकाउंट साइन इन लॉजिक
+            // साइन इन सबमिशन लॉजिक
             const formSignIn = document.getElementById("form-signin");
             formSignIn.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -1003,7 +1205,6 @@
                 const username = document.getElementById("signin-username").value.trim().toLowerCase();
                 const password = document.getElementById("signin-password").value;
 
-                // स्टेप १: यूजर एक्सिस्टेंस चेक
                 const { data: userExists, error: userError } = await sbClient
                     .from('profiles')
                     .select('username')
@@ -1022,7 +1223,6 @@
                     return;
                 }
 
-                // स्टेप २: पासवर्ड ऑथेंटिकेशन
                 const { data: userRecord, error: authError } = await sbClient
                     .from('profiles')
                     .select('*')
@@ -1039,14 +1239,13 @@
                     statusMsg.style.color = "#00ff66";
                     statusMsg.innerText = "Access Granted. Linking Identity Node...";
                     
-                    // ⚡ खातों के ऐरे में नया अकाउंट पुश करो (अगर पहले से नहीं है)
                     let accounts = JSON.parse(localStorage.getItem("sky_matrix_accounts")) || [];
                     if (!accounts.includes(username)) {
                         accounts.push(username);
                     }
                     
                     localStorage.setItem("sky_matrix_accounts", JSON.stringify(accounts));
-                    localStorage.setItem("sky_matrix_active", username); // इसे एक्टिव बनाओ
+                    localStorage.setItem("sky_matrix_active", username);
                     
                     activateUserUI(username);
                     renderAccountsList();
