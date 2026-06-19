@@ -4,7 +4,7 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link align="apple-touch-icon" href="logo.png">
 
-    <meta name="keywords" content="स्काई मैट्रिक्स वर्ल्ड, Sky Matrix World, स्काई मैट्रिक्स, Sky Matrix, कॉर्पोरेट गेटवे, Cypher AI Official, Sky Matrix Nashik">
+    <meta name="keywords" content="Sky Matrix World, Sky Matrix, Corporate Gateway, Cypher AI Official, Sky Matrix Nashik">
     <meta name="description" content="Welcome to the official corporate portal of Sky Matrix World. Powering next-generation artificial intelligence with the CYPHER AI protocol. Global enterprise operations live from Nashik.">
     <meta name="author" content="Sky Matrix World">
     <meta property="og:title" content="Sky Matrix World - Corporate Portal">
@@ -33,7 +33,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sky Matrix World - Corporate Hub</title>
     
-    <!-- ⚡ सुपाबेस फ्रंटएंड जावास्क्रिप्ट सीडीएन लाइब्रेरी -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -283,7 +282,7 @@
             margin-bottom: 20px;
         }
 
-        /* 🎛️ प्रीमियम इकोसिस्टम डायरेक्टरी सेक्शन स्टाइल */
+        /* 🎛️ Premium Ecosystem Directory Styles */
         #ecosystem-directory {
             background-color: #030107;
             border-top: 1px solid #110926;
@@ -310,6 +309,8 @@
             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .node-card:hover {
@@ -357,7 +358,45 @@
             font-size: 0.95rem;
             line-height: 1.6;
             color: #a59cb8;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* 📦 Expandable Extended Text Area & Buttons */
+        .extended-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #8a7f9f;
+            margin-bottom: 0;
+        }
+
+        .extended-desc.expanded {
+            max-height: 500px; /* Highly detailed descriptions safety padding */
+            margin-bottom: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: #8f88a0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 15px;
+            text-align: left;
+            width: fit-content;
+            transition: color 0.2s ease;
+        }
+
+        .read-more-btn:hover {
+            color: #00f0ff;
         }
 
         .node-guide-box {
@@ -368,11 +407,11 @@
             font-size: 0.85rem;
             line-height: 1.5;
             color: #cbbfdc;
+            margin-top: auto; /* Pushes action items consistently to bottom */
         }
 
         .node-guide-box strong {
             color: #00ff66;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
@@ -394,7 +433,7 @@
             color: #ff007a;
         }
 
-        /* 🔐 फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल */
+        /* 🔐 Authentication Overlay Portal */
         .auth-overlay-portal {
             position: fixed;
             top: 0;
@@ -532,7 +571,7 @@
             line-height: 1.4;
         }
 
-        /* 🚀 प्रीमियम नियॉन यूजर स्लाइडर पैनल */
+        /* 🚀 Multi-Account Sliding Panel */
         .user-panel-overlay {
             position: fixed;
             top: 0;
@@ -770,6 +809,7 @@
             .corporate-container { padding: 26px 20px; border-radius: 16px; }
             .corporate-text { font-size: 1.05rem; line-height: 1.7; }
             .directory-grid { grid-template-columns: 1fr; gap: 20px; }
+            .node-card { grid-column: span 1 !important; }
         }
     </style>
 </head>
@@ -778,7 +818,6 @@
     <div class="background-stars" id="starBg"></div>
     <div class="kinetic-grid"></div>
 
-    <!-- 🌐 कॉर्पोरेट हेडर -->
     <header class="corporate-header">
         <div class="corporate-logo">Sky Matrix</div>
         <div class="menu-toggle" id="menuToggle">
@@ -800,13 +839,11 @@
         </div>
     </header>
 
-    <!-- वेलकम स्क्रीन -->
     <section id="welcome-section">
         <div class="official-badge scroll-reveal">Global Enterprise Gateway</div>
         <div class="welcome-title scroll-reveal">SKY MATRIX WORLD</div>
     </section>
 
-    <!-- कॉर्पोरेट प्रोफाइल -->
     <section id="corporate-profile">
         <div class="section-tag scroll-reveal">Corporate Blueprint</div>
         <div class="corporate-container scroll-reveal">
@@ -822,92 +859,110 @@
         </div>
     </section>
 
-    <!-- 🎛️ नया इकोसिस्टम नोड नेटवर्क डायरेक्टरी (विस्तृत विवरण के साथ) -->
     <section id="ecosystem-directory">
         <div class="section-tag scroll-reveal">Ecosystem Directory</div>
         <div class="official-badge scroll-reveal" style="font-size: 0.9rem; margin-bottom: 5px;">Distributed Infrastructure Routing</div>
         
         <div class="directory-grid">
             
-            <!-- 1. UI MATRIX CARD -->
             <div class="node-card scroll-reveal">
                 <div class="node-card-header">
                     <div class="node-title">UI Matrix</div>
                     <div class="node-tag">Sub-Node 01</div>
                 </div>
                 <p class="node-desc">
-                    यह स्काई मैट्रिक्स का फ्रंटएंड डिज़ाइन लैब और विज़ुअल इंटरफेस हब है, जो हमारे पूरे नेटवर्क की डिज़ाइन्स को कंट्रोल करता है।
+                    This sub-node operates as Sky Matrix World's frontend research laboratory and interactive design ecosystem, governing our system interfaces.
                 </p>
-                <div class="node-guide-box">
-                    🎯 **यदि तुम यह जानना चाहते हो:** कि **CYPHER AI** के अपकमिंग और लाइव यूजर इंटरफेस कैसे दिखते हैं, या तुम फ्यूचरिस्टिक टेक और नेक्स्ट-जेन यूआई कंपोनेंट्स को लाइव एक्सपीरियंस करना चाहते हो, तो तुम इस नोड पर जा सकते हो।
+                <div class="extended-desc" id="ext-ui">
+                    The platform houses advanced visual modules, responsive core grids, and multi-layered web components designed to maximize data processing efficiency. It serves as the visual playground for previewing upcoming layouts of the CYPHER AI user architecture.
                 </div>
-                <a href="https://ui.skymatrixworld.co.in" class="node-link-btn" target="_blank">Connect Node &rarr;</a>
+                <button class="read-more-btn" onclick="toggleReadMore('ext-ui', this)">[ Read More ]</button>
+                
+                <div class="node-guide-box">
+                    💡 <strong>Routing Target:</strong> Navigate here to experience next-generation, cyberpunk-styled responsive modules, live UI dashboards, and upcoming frontend component releases.
+                </div>
+                <a href="https://ui.skymatrixworld.co.in" class="node-link-btn" target="_blank">Go To Website &rarr;</a>
             </div>
 
-            <!-- 2. DEVELOPERS CARD -->
             <div class="node-card scroll-reveal" style="border-left-color: #ff007a;">
                 <div class="node-card-header">
                     <div class="node-title">Developers</div>
                     <div class="node-tag">Sub-Node 02</div>
                 </div>
                 <p class="node-desc">
-                    यह स्काई मैट्रिक्स का सेंट्रल बैकएंड कोर और टेक्निकल आर्किटेक्चर है, जहाँ डेवलपर्स के लिए एलीट टूल्स होस्टेड हैं।
+                    The core backend architectural cluster housing centralized APIs, database structures, and foundational integration frameworks.
                 </p>
-                <div class="node-guide-box">
-                    🎯 **यदि तुम यह जानना चाहते हो:** कि हमारे ऑफिशियल एपीआई (APIs) कैसे काम करते हैं, टेक आर्किटेक्चर का ढांचा कैसा है, या तुम कोडिंग ब्लॉक्स और कोर सुपाबेस इंटीग्रेशन फ़्रेमवर्क्स को एक्सेस करना चाहते हो, तो तुम इस नोड पर जा सकते हो।
+                <div class="extended-desc" id="ext-dev">
+                    Engineered strictly for technical implementation, this hub provides official secure API documentations, microservice schematics, and developer access tokens. It provides a stable infrastructure built directly over distributed Supabase query schemas.
                 </div>
-                <a href="https://developers.skymatrixworld.co.in" class="node-link-btn" style="color: #ff007a;" target="_blank">Connect Node &rarr;</a>
+                <button class="read-more-btn" onclick="toggleReadMore('ext-dev', this)">[ Read More ]</button>
+                
+                <div class="node-guide-box">
+                    💡 <strong>Routing Target:</strong> Connect to this node if you require robust technical documentations, API endpoints, SDK deployment scripts, or network integration blocks.
+                </div>
+                <a href="https://developers.skymatrixworld.co.in" class="node-link-btn" style="color: #ff007a;" target="_blank">Go To Website &rarr;</a>
             </div>
 
-            <!-- 3. BIOGRAPHY CARD -->
             <div class="node-card scroll-reveal" style="border-left-color: #00ff66;">
                 <div class="node-card-header">
                     <div class="node-title">Biography</div>
                     <div class="node-tag">Sub-Node 03</div>
                 </div>
                 <p class="node-desc">
-                    यह स्काई मैट्रिक्स वर्ल्ड के ओरिजिन की गाथा है, जो हमारे लीडरशिप विज़न और कंपनी की स्थापना को दर्शाती है।
+                    The corporate chronicle tracing the genesis of Sky Matrix World, our evolutionary timeline, and foundational leadership paradigms.
                 </p>
-                <div class="node-guide-box">
-                    🎯 **यदि तुम यह जानना चाहते हो:** कि इस विशाल साम्राज्य और **CYPHER AI** प्रोटोकॉल को बनाने के पीछे का मास्टरमाइंड कौन है, उनका विज़न, उनका पर्सनल सफर, इंस्पिरेशन और टेक गोल्स क्या हैं, तो तुम इस नोड पर जा सकते हो।
+                <div class="extended-desc" id="ext-bio">
+                    This sector details the comprehensive blueprint of our operational expansion, exploring the developmental phases that led to the execution of the CYPHER AI system. It archives the technical inspirations and core visions guiding the corporate trajectory.
                 </div>
-                <a href="https://shree.skymatrixworld.co.in" class="node-link-btn" style="color: #00ff66;" target="_blank">Connect Node &rarr;</a>
+                <button class="read-more-btn" onclick="toggleReadMore('ext-bio', this)">[ Read More ]</button>
+                
+                <div class="node-guide-box">
+                    💡 <strong>Routing Target:</strong> Explore this sector to comprehend the technological history, foundational background, master vision, and long-term milestones of our architecture.
+                </div>
+                <a href="https://shree.skymatrixworld.co.in" class="node-link-btn" style="color: #00ff66;" target="_blank">Go To Website &rarr;</a>
             </div>
 
-            <!-- 4. UPDATES CARD -->
             <div class="node-card scroll-reveal" style="border-left-color: #763cd3;">
                 <div class="node-card-header">
                     <div class="node-title">Updates Log</div>
                     <div class="node-tag">Sub-Node 04</div>
                 </div>
                 <p class="node-desc">
-                    यह हमारे पूरे इंफ्रास्ट्रक्चर का लाइव न्यूज़ रूम और टाइमलाइन ट्रैकर है, जहाँ नेटवर्क से जुड़ी हर खबर स्टोर होती है।
+                    The central command newsroom broadcasting server tracking states, deployment milestones, and general network changelogs.
                 </p>
-                <div class="node-guide-box">
-                    🎯 **यदि तुम यह जानना चाहते हो:** कि हमारी कंपनी में रोज़ाना क्या नया डेवलपमेंट हो रहा है, लेटेस्ट न्यूज़ आर्टिकल्स पढ़ना चाहते हो, या सर्वर अपटाइम चेंजलॉग्स और अपकमिंग प्रोजेक्ट्स की लाइव ट्रैकिंग देखना चाहते हो, तो तुम इस नोड पर जा सकते हो।
+                <div class="extended-desc" id="ext-updates">
+                    All system structural modifications, core version bumps, optimization metrics, and architectural press releases are chronologically archived here. It serves as the absolute transparent log of our ongoing infrastructure build-outs.
                 </div>
-                <a href="https://updates.skymatrixworld.co.in" class="node-link-btn" style="color: #763cd3;" target="_blank">Connect Node &rarr;</a>
+                <button class="read-more-btn" onclick="toggleReadMore('ext-updates', this)">[ Read More ]</button>
+                
+                <div class="node-guide-box">
+                    💡 <strong>Routing Target:</strong> Route to this node for live network logs, newly integrated code changes, feature logs, and official tech announcements.
+                </div>
+                <a href="https://updates.skymatrixworld.co.in" class="node-link-btn" style="color: #763cd3;" target="_blank">Go To Website &rarr;</a>
             </div>
 
-            <!-- 5. SUPPORT CARD (Centered or full grid in layout) -->
             <div class="node-card scroll-reveal" style="border-left-color: #00f0ff; grid-column: span 2;">
                 <div class="node-card-header">
                     <div class="node-title">Support Desk</div>
                     <div class="node-tag">Sub-Node 05</div>
                 </div>
                 <p class="node-desc">
-                    यह स्काई मैट्रिक्स कम्युनिटी के लिए डायरेक्ट हेल्पडेस्क और कम्युनिकेशन लिंक है, जो यूजर्स की सुरक्षा और सहायता सुनिश्चित करता है।
+                    The direct user communications link designed to process ticket responses, secure credential inquiries, and user reporting functions.
                 </p>
-                <div class="node-guide-box">
-                    🎯 **यदि तुम यह जानना चाहते हो:** कि किसी नोड एक्सेस में आ रहे बग्स या टेक्निकल एरर्स को कैसे रिपोर्ट करें, कंपनी को अपने आइडियाज कैसे भेजें, या तुम्हारी आइडेंटिटी क्रेडेंशियल्स को रिकवर करने के लिए टीम से डायरेक्ट हेल्प चाहिए, तो तुम इस नोड पर जा सकते हो।
+                <div class="extended-desc" id="ext-support">
+                    Equipped with diagnostic submission forms, this portal assists network nodes with error reporting, compliance audits, and architectural system feedback. It provides direct, highly responsive assistance tunnels to maintain constant ecosystem integrity.
                 </div>
-                <a href="https://support.skymatrixworld.co.in" class="node-link-btn" target="_blank">Connect Node &rarr;</a>
+                <button class="read-more-btn" onclick="toggleReadMore('ext-support', this)">[ Read More ]</button>
+                
+                <div class="node-guide-box">
+                    💡 <strong>Routing Target:</strong> Access this hub to request tech assistance, resolve identity session errors, submit integration proposals, or report operational bugs.
+                </div>
+                <a href="https://support.skymatrixworld.co.in" class="node-link-btn" target="_blank">Go To Website &rarr;</a>
             </div>
 
         </div>
     </section>
 
-    <!-- 🔐 ऑथेंटिकेशन ओवरले पोर्टल -->
     <div class="auth-overlay-portal" id="authOverlay">
         <div class="auth-container">
             <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
@@ -917,7 +972,6 @@
                 <div class="auth-tab" id="tab-register">Register</div>
             </div>
 
-            <!-- १. साइन इन (Sign In) फॉर्म -->
             <div class="auth-form-wrapper active" id="wrapper-signin">
                 <form class="auth-form" id="form-signin">
                     <input type="text" class="input-box" id="signin-username" placeholder="Username" required>
@@ -926,7 +980,6 @@
                 </form>
             </div>
 
-            <!-- २. रजिस्टर (Register) फॉर्म -->
             <div class="auth-form-wrapper" id="wrapper-register">
                 <form class="auth-form" id="form-register">
                     <input type="text" class="input-box" id="reg-username" placeholder="Create Username" required>
@@ -940,7 +993,6 @@
         </div>
     </div>
 
-    <!-- 🚀 अभिनव मल्टी-अकाउंट यूजर पैनल स्लाइडर -->
     <div class="user-panel-overlay" id="userPanelOverlay">
         <div class="user-panel">
             <div class="close-panel-btn" id="closePanelBtn">&times;</div>
@@ -952,8 +1004,7 @@
 
             <div class="accounts-section-title">Active Identities</div>
             <div class="accounts-list" id="accountsListContainer">
-                <!-- बटन्स यहाँ जनरेट होंगे -->
-            </div>
+                </div>
 
             <div class="panel-actions">
                 <button class="panel-action-btn" id="addIdentityBtn">
@@ -966,7 +1017,6 @@
         </div>
     </div>
 
-    <!-- लीगल फुटर -->
     <section id="footer-section">
         <div class="legal-links">
             <a href="#" class="legal-item">Privacy Policy</a>
@@ -976,12 +1026,22 @@
         <div class="copyright">&copy; 2026 SKY MATRIX WORLD. All Rights Reserved. Secure Node Connection.</div>
     </section>
 
-    <!-- 🛠️ सुपाबेस मल्टी-अकाउंट डिप्लॉयमेंट लॉजिक स्क्रिप्ट -->
     <script>
         const SUPABASE_URL = "https://sektybsrcaqjslnlxmdy.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNla3R5YnNyY2FxanNsbmx4bWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NDc5NzUsImV4cCI6MjA5NzQyMzk3NX0.JD_HiMDgZH0kz96EAlCLH66K8VobY81aweYX_Ls2JCQ";
         
         const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 📦 Expandable Description Logic
+        function toggleReadMore(targetId, btn) {
+            const extDesc = document.getElementById(targetId);
+            extDesc.classList.toggle('expanded');
+            if (extDesc.classList.contains('expanded')) {
+                btn.innerText = "[ Read Less ]";
+            } else {
+                btn.innerText = "[ Read More ]";
+            }
+        }
 
         document.addEventListener("DOMContentLoaded", function() {
             const starBg = document.getElementById("starBg");
@@ -1039,10 +1099,9 @@
                 });
             }
 
-            loadMultiAccountSession = checkLocalSession; 
             checkLocalSession();
 
-            // एनीमेशन और स्क्रॉल लॉजिक
+            // Background Parallax and Intersection Observer Logics
             window.addEventListener("scroll", function() {
                 let scrollPos = window.pageYOffset;
                 starBg.style.transform = "translateY(" + (scrollPos * 0.25) + "px)";
@@ -1059,7 +1118,7 @@
 
             revealElements.forEach(element => { elementObserver.observe(element); });
 
-            // मोबाइल नेविगेशन
+            // Mobile Header Navigation Control Toggle
             const menuToggle = document.getElementById("menuToggle");
             const navContainer = document.getElementById("navContainer");
             menuToggle.addEventListener("click", () => {
@@ -1067,7 +1126,7 @@
                 navContainer.classList.toggle("open");
             });
 
-            // ऑथेंटिकेशन विंडोज लॉजिक
+            // Authentication Modal UI Toggles
             const closeAuthBtn = document.getElementById("closeAuthBtn");
             const authOverlay = document.getElementById("authOverlay");
             const tabSignIn = document.getElementById("tab-signin");
@@ -1100,7 +1159,7 @@
                 statusMsg.style.display = "none";
             });
 
-            // स्लाइडर पैनल कंट्रोल
+            // Identity Multi-Slider Control
             const userPanelOverlay = document.getElementById("userPanelOverlay");
             const closePanelBtn = document.getElementById("closePanelBtn");
             const panelLogoutBtn = document.getElementById("panelLogoutBtn");
@@ -1145,7 +1204,7 @@
                 }
             });
 
-            // रजिस्टर सबमिशन लॉजिक
+            // Identity Registration Transmission Logic
             const formRegister = document.getElementById("form-register");
             formRegister.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -1159,7 +1218,7 @@
 
                 if (password !== confirmPassword) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "[!] एरर: पासवर्ड मैच नहीं हो रहे!";
+                    statusMsg.innerText = "[!] Error: Passwords do not match!";
                     return;
                 }
 
@@ -1176,7 +1235,7 @@
 
                 if (existingUser && existingUser.length > 0) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "[!] आइडेंटिटी एरर: यूजरनेम पहले से डिप्लॉयड है!";
+                    statusMsg.innerText = "[!] Identity Error: Username already deployed!";
                     return;
                 }
 
@@ -1194,7 +1253,7 @@
                 }
             });
 
-            // साइन इन सबमिशन लॉजिक
+            // Identity Authentication Logic Block
             const formSignIn = document.getElementById("form-signin");
             formSignIn.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -1218,7 +1277,7 @@
 
                 if (!userExists || userExists.length === 0) {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "[!] आइडेंटिटी एरर: नो एक्टिव डिप्लॉयमेंट फाउंड. रजिस्टर फर्स्ट!";
+                    statusMsg.innerText = "[!] Identity Error: No active deployment found. Register first!";
                     formSignIn.reset();
                     return;
                 }
@@ -1256,7 +1315,7 @@
                     }, 1000);
                 } else {
                     statusMsg.style.color = "#ff007a";
-                    statusMsg.innerText = "[!] एक्सेस डिनाइड: इनवैलिड पासवर्ड कोड!";
+                    statusMsg.innerText = "[!] Access Denied: Invalid password code!";
                 }
             });
         });
