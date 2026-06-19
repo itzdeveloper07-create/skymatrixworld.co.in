@@ -48,7 +48,6 @@
             width: 100%;
         }
 
-        /* प्रीमियम कस्टम साइबरपंक स्क्रॉलबार */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -61,7 +60,6 @@
             border-radius: 10px;
         }
 
-        /* स्टार्स और ग्रिड बैकग्राउंड */
         .background-stars {
             position: fixed;
             top: 0;
@@ -89,7 +87,7 @@
             pointer-events: none;
         }
 
-        /* 🚀 न्यू एलीट फीचर: ग्लोबल कॉर्पोरेट नेविगेशन हेडर */
+        /* 🌐 ग्लोबल कॉर्पोरेट नेविगेशन हेडर */
         .corporate-header {
             position: fixed;
             top: 0;
@@ -99,14 +97,14 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0, 240, 255, 0.1);
             z-index: 1000;
-            padding: 15px 40px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .corporate-logo {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 800;
             letter-spacing: 2px;
             background: linear-gradient(45deg, #00f0ff, #ff007a);
@@ -115,9 +113,15 @@
             text-transform: uppercase;
         }
 
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 22px;
         }
 
         .nav-item {
@@ -133,6 +137,45 @@
         .nav-item:hover, .nav-item.active {
             color: #00f0ff;
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+        }
+
+        /* ⚡ हेडर का प्रीमियम साइन-इन बटन */
+        .header-signin-btn {
+            background: linear-gradient(90deg, rgba(255, 0, 122, 0.2), rgba(0, 240, 255, 0.2));
+            border: 1px solid #ff007a;
+            padding: 10px 22px;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 0, 122, 0.2);
+        }
+
+        .header-signin-btn:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* 📱 मोबाइल के लिए हैमबर्गर मेनू बटन */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
         section {
@@ -161,7 +204,7 @@
 
         /* --- वेलकम सेक्शन --- */
         #welcome-section {
-            background: radial-gradient(circle at center, #0e0624 0%, #030107 100__);
+            background: radial-gradient(circle at center, #0e0624 0%, #030107 100%);
         }
 
         .official-badge {
@@ -185,7 +228,7 @@
             margin-bottom: 25px;
         }
 
-        /* --- कॉर्पोरेट मिशन विवरण --- */
+        /* --- कॉर्पोरेट प्रोफाइल --- */
         #corporate-profile {
             background-color: #05030e;
             border-top: 1px solid #110926;
@@ -218,40 +261,70 @@
             margin-bottom: 20px;
         }
 
-        /* --- 🔐 न्यू एलीट फ़ीचर: सुपाबेस रेडी नियॉन ऑथेंटिकेशन पोर्टल --- */
-        #auth-portal {
-            background-color: #030107;
-            border-top: 1px solid #110926;
+        /* 🔐 गॉड-लेवल फीचर: फुल-स्क्रीन ओवरले ऑथेंटिकेशन पोर्टल (अलग पेज की वाइब) */
+        .auth-overlay-portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(3, 1, 7, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .auth-overlay-portal.open {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .auth-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 412px;
             background: #080513;
             border: 1px solid #1c143a;
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(110, 68, 255, 0.05);
+            border-radius: 28px;
+            padding: 45px 35px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0, 240, 255, 0.1);
             position: relative;
+            transform: scale(0.9);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .auth-container::before {
-            content: '';
+        .auth-overlay-portal.open .auth-container {
+            transform: scale(1);
+        }
+
+        /* क्लोज़ बटन */
+        .close-auth-btn {
             position: absolute;
-            top: -1px; left: 50%; transform: translateX(-50%);
-            width: 50%; height: 2px;
-            background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+            top: 20px;
+            right: 22px;
+            font-size: 1.8rem;
+            color: #554e68;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-auth-btn:hover {
+            color: #ff007a;
         }
 
         .auth-tabs {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 35px;
+            margin-bottom: 35px;
         }
 
         .auth-tab {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: #4b4563;
             cursor: pointer;
@@ -268,7 +341,7 @@
         .auth-form {
             display: none;
             flex-direction: column;
-            gap: 18px;
+            gap: 20px;
         }
 
         .auth-form.active {
@@ -279,8 +352,8 @@
             width: 100%;
             background: #030108;
             border: 1.5px solid #1a1235;
-            padding: 16px 20px;
-            border-radius: 12px;
+            padding: 18px 22px;
+            border-radius: 14px;
             color: #ffffff;
             font-size: 1rem;
             outline: none;
@@ -296,8 +369,8 @@
             width: 100%;
             background: linear-gradient(90deg, #ff007a 0%, #763cd3 100%);
             border: none;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             color: #ffffff;
             font-size: 1.1rem;
             font-weight: 600;
@@ -313,7 +386,7 @@
             filter: brightness(1.1);
         }
 
-        /* --- कॉर्पोरेट फुटर और लीगल लिंक्स --- */
+        /* --- कॉर्पोरेट फुटर --- */
         #footer-section {
             background: #010003;
             min-height: 40vh;
@@ -349,22 +422,82 @@
             letter-spacing: 1px;
         }
 
-        /* 📱 रिस्पॉन्सिव मोबाइल सेटिंग्स */
+        /* =======================================================
+           🚀 खास मोबाइल के लिए कस्टमाइज्ड रिस्पॉन्सिव CSS
+           ======================================================= */
         @media (max-width: 768px) {
             .corporate-header {
-                padding: 15px 20px;
+                padding: 16px 24px;
             }
+
+            /* मोबाइल पर हैमबर्गर आइकॉन ऑन होगा */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* मोबाइल पर लिंक्स और बटन छुपाकर साइड-ड्रॉअर मेनू में बदल जाएंगे */
+            .nav-container {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 260px;
+                height: 100vh;
+                background: rgba(8, 5, 19, 0.98);
+                backdrop-filter: blur(15px);
+                border-left: 1px solid rgba(0, 240, 255, 0.1);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px;
+                gap: 35px;
+                transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .nav-container.open {
+                right: 0;
+            }
+
             .nav-links {
-                display: none; /* मोबाइल पर हैमबर्गर या क्लीनर लेआउट बाद में जोड़ सकते हैं */
+                flex-direction: column;
+                gap: 25px;
+                width: 100%;
             }
+
+            .nav-item {
+                font-size: 1.05rem;
+                display: block;
+                width: 100%;
+            }
+
+            .header-signin-btn {
+                width: 100%;
+                text-align: center;
+                padding: 14px;
+            }
+
+            /* हैमबर्गर क्लिक एनिमेशन (Cross Effect) */
+            .menu-toggle.open span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .menu-toggle.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -7px);
+            }
+
             .welcome-title {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
+                letter-spacing: 2px;
             }
+
             .corporate-container {
-                padding: 24px;
+                padding: 26px 20px;
+                border-radius: 16px;
             }
+
             .corporate-text {
-                font-size: 1rem;
+                font-size: 1.05rem;
+                line-height: 1.7;
             }
         }
     </style>
@@ -376,14 +509,24 @@
 
     <header class="corporate-header">
         <div class="corporate-logo">Sky Matrix</div>
-        <nav class="nav-links">
-            <a href="#" class="nav-item active">Gateway</a>
-            <a href="#" class="nav-item">UI Matrix</a>
-            <a href="#" class="nav-item">Developers</a>
-            <a href="#" class="nav-item">Updates</a>
-            <a href="#" class="nav-item">Support</a>
-            <a href="#" class="nav-item">Biography</a>
-        </nav>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-container" id="navContainer">
+            <nav class="nav-links">
+                <a href="#" class="nav-item active">Gateway</a>
+                <a href="#" class="nav-item">UI Matrix</a>
+                <a href="#" class="nav-item">Developers</a>
+                <a href="#" class="nav-item">Updates</a>
+                <a href="#" class="nav-item">Support</a>
+                <a href="#" class="nav-item">Biography</a>
+            </nav>
+            <button class="header-signin-btn" id="openAuthBtn">Sign In</button>
+        </div>
     </header>
 
     <section id="welcome-section">
@@ -406,28 +549,29 @@
         </div>
     </section>
 
-    <section id="auth-portal">
-        <div class="section-tag scroll-reveal">Secure Access Node</div>
-        <div class="auth-container scroll-reveal">
+    <div class="auth-overlay-portal" id="authOverlay">
+        <div class="auth-container">
+            <div class="close-auth-btn" id="closeAuthBtn">&times;</div>
+            
             <div class="auth-tabs">
                 <div class="auth-tab active" id="tab-login">Sign In</div>
                 <div class="auth-tab" id="tab-register">Register</div>
             </div>
 
-            <form class="auth-form active" id="form-login" onsubmit="event.preventDefault();">
+            <form class="auth-form active" id="form-login" onsubmit="event.preventDefault(); alert('Session Initialization ongoing...');">
                 <input type="email" class="input-box" placeholder="Corporate Email" required>
                 <input type="password" class="input-box" placeholder="Access Password" required>
                 <button type="submit" class="auth-btn">Initialize Session</button>
             </form>
 
-            <form class="auth-form" id="form-register" onsubmit="event.preventDefault();">
+            <form class="auth-form" id="form-register" onsubmit="event.preventDefault(); alert('Identity Deployment ongoing...');">
                 <input type="text" class="input-box" placeholder="Full Name" required>
                 <input type="email" class="input-box" placeholder="Corporate Email" required>
                 <input type="password" class="input-box" placeholder="Create Secure Password" required>
                 <button type="submit" class="auth-btn">Deploy Identity</button>
             </form>
         </div>
-    </section>
+    </div>
 
     <section id="footer-section">
         <div class="legal-links">
@@ -462,11 +606,42 @@
 
             revealElements.forEach(element => { elementObserver.observe(element); });
 
-            // 3. 🔐 टैब स्विचिंग स्क्रिप्ट (Sign In / Sign Up)
+            // 3. 📱 मोबाइल हैमबर्गर मेनू स्क्रिप्ट
+            const menuToggle = document.getElementById("menuToggle");
+            const navContainer = document.getElementById("navContainer");
+
+            menuToggle.addEventListener("click", () => {
+                menuToggle.classList.toggle("open");
+                navContainer.classList.toggle("open");
+            });
+
+            // लिंक्स पर क्लिक करते ही मोबाइल मेनू अपने आप बंद हो जाएगा
+            document.querySelectorAll(".nav-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    menuToggle.classList.remove("open");
+                    navContainer.classList.remove("open");
+                });
+            });
+
+            // 4. 🔐 ऑथेंटिकेशन ओवरले कंट्रोल्स (Sign In बटन क्लिक लॉजिक)
+            const openAuthBtn = document.getElementById("openAuthBtn");
+            const closeAuthBtn = document.getElementById("closeAuthBtn");
+            const authOverlay = document.getElementById("authOverlay");
             const tabLogin = document.getElementById("tab-login");
             const tabRegister = document.getElementById("tab-register");
             const formLogin = document.getElementById("form-login");
             const formRegister = document.getElementById("form-register");
+
+            openAuthBtn.addEventListener("click", () => {
+                authOverlay.classList.add("open");
+                // अगर मोबाइल मेनू खुला है, तो उसे बंद कर दो
+                menuToggle.classList.remove("open");
+                navContainer.classList.remove("open");
+            });
+
+            closeAuthBtn.addEventListener("click", () => {
+                authOverlay.classList.remove("open");
+            });
 
             tabLogin.addEventListener("click", () => {
                 tabLogin.classList.add("active");
