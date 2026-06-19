@@ -4,7 +4,7 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link align="apple-touch-icon" href="logo.png">
 
-    <meta name="keywords" content="स्काई मैट्रिक्स वर्ल्ड, Sky Matrix World, स्काई मैट्रिक्स, Sky Matrix, कॉर्पोरेट गेटवे, Cypher AI Official, Sky Matrix Nashik">
+    <meta name="keywords" content="स्काई矩阵वर्ल्ड, Sky Matrix World, स्काई मैट्रिक्स, Sky Matrix, कॉर्पोरेट गेटवे, Cypher AI Official, Sky Matrix Nashik">
     <meta name="description" content="Welcome to the official corporate portal of Sky Matrix World. Powering next-generation artificial intelligence with the CYPHER AI protocol. Global enterprise operations live from Nashik.">
     <meta name="author" content="Sky Matrix World">
     <meta property="og:title" content="Sky Matrix World - Corporate Portal">
@@ -141,6 +141,7 @@
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
         }
 
+        /* 🌟 पहले जैसा ओरिजिनल स्लिम नियॉन बटन यूआई (साइन इन के लिए) */
         .header-signin-btn {
             background: linear-gradient(90deg, rgba(255, 0, 122, 0.2), rgba(0, 240, 255, 0.2));
             border: 1px solid #ff007a;
@@ -162,44 +163,26 @@
             transform: translateY(-1px);
         }
 
-        /* 🚀 प्रीमियम यूजर-स्टेटस हैडर */
-        .header-user-badge {
-            background: rgba(8, 5, 19, 0.8);
-            border: 1px solid rgba(0, 255, 102, 0.3);
-            padding: 10px 20px;
+        /* 🌟 लॉगिन के बाद का एलीट नियॉन बटन यूआई (कार्टून अवतार हटाया) */
+        .header-user-btn {
+            background: linear-gradient(90deg, rgba(0, 255, 102, 0.15), rgba(0, 240, 255, 0.15));
+            border: 1px solid #00ff66;
+            padding: 10px 24px;
             border-radius: 50px;
             color: #00ff66;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-            display: none; /* डिफ़ॉल्ट रूप से छिपा हुआ */
-        }
-
-        .header-user-badge:hover {
-            border-color: #00ff66;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
-        }
-
-        .header-user-badge .user-avatar {
-            width: 30px;
-            height: 30px;
-            background-color: #00ff66;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #030107;
-            font-size: 1.1rem;
-        }
-
-        .header-user-badge .user-status-text {
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            display: none; /* लॉगिन होने पर स्क्रिप्ट से चालू होगा */
+        }
+
+        .header-user-btn:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.5);
+            transform: translateY(-1px);
         }
 
         .menu-toggle {
@@ -437,7 +420,7 @@
             line-height: 1.4;
         }
 
-        /* 🚀 अभिनव साइबरपंक स्लाइडर पैनल */
+        /* 🚀 प्रीमियम नियॉन यूजर स्लाइडर पैनल (पूरी तरह कस्टमाइज्ड) */
         .user-panel-overlay {
             position: fixed;
             top: 0;
@@ -462,7 +445,7 @@
             height: 100%;
             background: #080513;
             border-left: 1px solid #1c143a;
-            padding: 50px 30px;
+            padding: 60px 30px;
             display: flex;
             flex-direction: column;
             gap: 40px;
@@ -487,47 +470,40 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
             text-align: center;
-        }
-
-        .panel-user-avatar {
-            width: 80px;
-            height: 80px;
-            background-color: #00ff66;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #030107;
-            font-size: 2.5rem;
-            font-weight: bold;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+            margin-top: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 25px;
         }
 
         .panel-username {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
 
         .panel-status-tag {
             background: rgba(0, 255, 102, 0.1);
             border: 1px solid #00ff66;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 50px;
             color: #00ff66;
             font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
         }
 
         .panel-actions {
             display: flex;
             flex-direction: column;
             gap: 20px;
+            height: 100%;
         }
 
         .panel-action-btn {
@@ -536,14 +512,15 @@
             padding: 16px;
             border-radius: 12px;
             color: #ffffff;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
         }
 
@@ -553,10 +530,11 @@
             background: rgba(14, 9, 30, 0.8);
         }
 
+        /* 🔴 लॉगआउट का कड़क क्लीन बटन */
         .panel-action-btn.logout-btn {
             border-color: #ff007a;
             color: #ff007a;
-            margin-top: auto;
+            margin-top: auto; /* बटन को बिल्कुल नीचे धकेलेगा */
         }
 
         .panel-action-btn.logout-btn:hover {
@@ -617,7 +595,7 @@
             .nav-container.open { right: 0; }
             .nav-links { flex-direction: column; gap: 25px; width: 100%; }
             .nav-item { font-size: 1.05rem; display: block; width: 100%; }
-            .header-signin-btn { width: 100%; text-align: center; padding: 14px; }
+            .header-signin-btn, .header-user-btn { width: 100%; text-align: center; padding: 14px; }
             .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
             .menu-toggle.open span:nth-child(2) { opacity: 0; }
             .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
@@ -650,10 +628,7 @@
             </nav>
             <button class="header-signin-btn" id="openAuthBtn">Sign In</button>
             
-            <div class="header-user-badge" id="headerUserBadge">
-                <div class="user-avatar" id="headerAvatar">?</div>
-                <div class="user-status-text" id="headerUsername">Offline</div>
-            </div>
+            <button class="header-user-btn" id="headerUserBtn">Offline</button>
         </div>
     </header>
 
@@ -712,17 +687,16 @@
             <div class="close-panel-btn" id="closePanelBtn">&times;</div>
             
             <div class="panel-user-info">
-                <div class="panel-user-avatar" id="panelAvatar">?</div>
                 <div class="panel-username" id="panelUsername">Offline</div>
-                <div class="panel-status-tag">Core Node Active</div>
+                <div class="panel-status-tag">Core User Active</div>
             </div>
 
             <div class="panel-actions">
-                <button class="panel-action-btn">
-                    <span>+</span> Add Another Identity
+                <button class="panel-action-btn" id="addIdentityBtn">
+                    + Add Another Identity
                 </button>
                 <button class="panel-action-btn logout-btn" id="panelLogoutBtn">
-                    <span>[!]</span> Terminate Session
+                    LOG OUT
                 </button>
             </div>
         </div>
@@ -747,13 +721,11 @@
             const starBg = document.getElementById("starBg");
             const revealElements = document.querySelectorAll(".scroll-reveal");
             const openAuthBtn = document.getElementById("openAuthBtn");
-            const headerUserBadge = document.getElementById("headerUserBadge");
-            const headerAvatar = document.getElementById("headerAvatar");
-            const headerUsername = document.getElementById("headerUsername");
+            const headerUserBtn = document.getElementById("headerUserBtn");
             const panelUsername = document.getElementById("panelUsername");
-            const panelAvatar = document.getElementById("panelAvatar");
             const statusMsg = document.getElementById("statusMessage");
 
+            // परमानेंट लॉगिन चेक (फोन रीस्टार्ट पर भी लॉगआउट नहीं होगा)
             function checkLocalSession() {
                 const loggedUser = localStorage.getItem("sky_matrix_session");
                 if (loggedUser) {
@@ -764,17 +736,13 @@
             function activateUserUI(username) {
                 const upperUsername = username.toUpperCase();
                 
-                // हैडर बटन छिपाओ, यूजर बैज दिखाओ
+                // ओरिजिनल लुक: पुराना बटन छिपाओ, नया एलीट यूजर बटन दिखाओ
                 openAuthBtn.style.display = "none";
-                headerUserBadge.style.display = "flex";
+                headerUserBtn.style.display = "block";
+                headerUserBtn.innerText = upperUsername;
                 
-                // हैडर बैज में नाम और अवतार सेट करो
-                headerUsername.innerText = upperUsername;
-                headerAvatar.innerText = upperUsername.charAt(0);
-                
-                // पैनल में भी नाम और अवतार सेट करो
+                // स्लाइडर पैनल के अंदर डेटा सिंक करो
                 panelUsername.innerText = upperUsername;
-                panelAvatar.innerText = upperUsername.charAt(0);
             }
 
             checkLocalSession();
@@ -842,12 +810,13 @@
                 statusMsg.style.display = "none";
             });
 
-            // 🚀 अभिनव यूजर पैनल स्लाइडर कंट्रोल्स
+            // 🚀 यूजर पैनल स्लाइडर कंट्रोल्स (ओरिजिनल नियॉन बटन क्लिक पर खुलेगा)
             const userPanelOverlay = document.getElementById("userPanelOverlay");
             const closePanelBtn = document.getElementById("closePanelBtn");
             const panelLogoutBtn = document.getElementById("panelLogoutBtn");
+            const addIdentityBtn = document.getElementById("addIdentityBtn");
 
-            headerUserBadge.addEventListener("click", () => {
+            headerUserBtn.addEventListener("click", () => {
                 userPanelOverlay.classList.add("open");
                 menuToggle.classList.remove("open");
                 navContainer.classList.remove("open");
@@ -857,16 +826,24 @@
                 userPanelOverlay.classList.remove("open");
             });
 
-            // पैनल के बाहर क्लिक करने पर भी बंद हो जाए
             userPanelOverlay.addEventListener("click", (e) => {
                 if (e.target === userPanelOverlay) {
                     userPanelOverlay.classList.remove("open");
                 }
             });
 
-            //  terminat सेशन (लॉगआउट लॉजिक)
+            // ➕ ऐड अनादर आइडेंटिटी (मल्टीपल अकाउंट फीचर)
+            addIdentityBtn.addEventListener("click", () => {
+                userPanelOverlay.classList.remove("open"); // स्लाइडर बंद करो
+                authOverlay.classList.add("open"); // ऑथ पोर्टल खोलो ताकि नया अकाउंट जुड़ सके
+                statusMsg.style.display = "block";
+                statusMsg.style.color = "#00f0ff";
+                statusMsg.innerText = "Ready to deploy or switch to another identity node.";
+            });
+
+            // 🔴 क्लीन लॉगआउट लॉजिक
             panelLogoutBtn.addEventListener("click", () => {
-                if(confirm("Do you want to terminate this secure session?")) {
+                if(confirm("Do you want to log out from this secure session?")) {
                     localStorage.removeItem("sky_matrix_session");
                     window.location.reload();
                 }
@@ -890,7 +867,6 @@
                     return;
                 }
 
-                // पहले चेक करो कि यूजरनेम पहले से मौजूद तो नहीं है
                 const { data: existingUser, error: fetchError } = await sbClient
                     .from('profiles')
                     .select('username')
@@ -908,7 +884,6 @@
                     return;
                 }
 
-                // सुपाबेस की 'profiles' टेबल में कस्टम डेटा इंसर्ट करो
                 const { error: insertError } = await sbClient
                     .from('profiles')
                     .insert([{ username: username, password: password }]);
@@ -923,7 +898,7 @@
                 }
             });
 
-            // 🔥 ४. रियल कस्टमाइज्ड साइन इन (Sign In) लॉजिक (सटीक एरर लॉजिक के साथ)
+            // 🔥 ४. रियल कस्टमाइज्ड साइन इन (Sign In) लॉजिक (सटीक एरर लॉजिक)
             const formSignIn = document.getElementById("form-signin");
             formSignIn.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -934,7 +909,7 @@
                 const username = document.getElementById("signin-username").value.trim().toLowerCase();
                 const password = document.getElementById("signin-password").value;
 
-                // स्टेप १: पहले चेक करो कि यूजर मौजूद है या नहीं
+                // स्टेप १: चेक करो यूजर है या नहीं
                 const { data: userExists, error: userError } = await sbClient
                     .from('profiles')
                     .select('username')
@@ -953,7 +928,7 @@
                     return;
                 }
 
-                // स्टेप २: यूजर मौजूद है, अब पासवर्ड चेक करो
+                // स्टेप २: पासवर्ड वेरिफिकेशन
                 const { data: userRecord, error: authError } = await sbClient
                     .from('profiles')
                     .select('*')
