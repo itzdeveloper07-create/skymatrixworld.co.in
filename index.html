@@ -545,8 +545,8 @@
     </section>
 
     <script>
-        const SUPABASE_URL = "https://uopehfsrjbrphzqqbkkk.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvcGVoZnNyamJycGh6cXFia2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MzgzODQsImV4cCI6MjA5NzQxNDM4NH0.iq0g-j5Ni_n8Fg8YapparLiFz6uIu_ys63i2R71I9Zk";
+        const SUPABASE_URL = "https://sektybsrcaqjslnlxmdy.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNla3R5YnNyY2FxanNsbmx4bWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NDc5NzUsImV4cCI6MjA5NzQyMzk3NX0.JD_HiMDgZH0kz96EAlCLH66K8VobY81aweYX_Ls2JCQ";
         
         const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -556,7 +556,6 @@
             const openAuthBtn = document.getElementById("openAuthBtn");
             const statusMsg = document.getElementById("statusMessage");
 
-            // ब्राउज़र सेशन चेक (लोकल स्टोरेज की मदद से सेशन मैन्टेन रखना)
             function checkLocalSession() {
                 const loggedUser = localStorage.getItem("sky_matrix_session");
                 if (loggedUser) {
@@ -662,7 +661,7 @@
                     return;
                 }
 
-                // पहले चेक करो कि यूजरनेम पहले से तो मौजूद नहीं है
+                // पहले चेक करो कि यूजरनेम पहले से मौजूद तो नहीं है
                 const { data: existingUser, error: fetchError } = await sbClient
                     .from('profiles')
                     .select('username')
@@ -723,7 +722,6 @@
                     statusMsg.style.color = "#00ff66";
                     statusMsg.innerText = "Access Granted. Initializing Secure Node...";
                     
-                    // लोकल स्टोरेज में सेशन स्टोर करना
                     localStorage.setItem("sky_matrix_session", username);
                     activateUserNode(username);
                     
@@ -739,4 +737,4 @@
         });
     </script>
 </body>
-</html>
+</html>S
